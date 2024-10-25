@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid'; // Correct Heroicons v2 import
+import SignIn from './Components/SignIn';
+
+
+
+
 
 interface Transaction {
   id: string;
@@ -12,6 +17,7 @@ const App: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [newAmount, setNewAmount] = useState<number>(0);
   const [newDescription, setNewDescription] = useState<string>("");
+  
 
   // Function to handle adding new transactions
   const handleAddTransaction = () => {
@@ -34,8 +40,10 @@ const App: React.FC = () => {
   };
 
   return (
+    
     <div className="p-4">
       {/* Dashboard */}
+      <SignIn/>
       <h2 className="text-lg">Dashboard</h2>
       <div className="bg-black text-white p-6 rounded-3xl shadow-lg">
         <div className="mt-4">
