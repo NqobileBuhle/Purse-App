@@ -81,7 +81,7 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
             </div>
 
             {/* Display filtered data */}
-            <ul>
+            <ul className=''>
                 {filterData().map(item => (
                     <li key={item.id}>{item.date}</li>
                 ))}
