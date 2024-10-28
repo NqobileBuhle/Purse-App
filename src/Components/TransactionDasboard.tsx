@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { PlusIcon } from '@heroicons/react/24/solid'; // Correct Heroicons v2 import
-import SignIn from './Components/SignIn';
+import { PlusIcon } from '@heroicons/react/24/solid'; 
+
 
 
 
@@ -43,7 +43,7 @@ const App: React.FC = () => {
     
     <div className="p-4">
       {/* Dashboard */}
-      <SignIn/>
+      
       <h2 className="text-lg">Dashboard</h2>
       <div className="bg-black text-white p-6 rounded-3xl shadow-lg">
         <div className="mt-4">
@@ -99,5 +99,4 @@ const App: React.FC = () => {
 };
 
 export default App;
-
 
