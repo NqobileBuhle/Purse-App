@@ -1,0 +1,87 @@
+{
+    "transactions": [
+      {
+        "transactionId": "T001",
+        "date": "2024-10-01",
+        "Expense": "Rent",
+        "description": "Direct payment to landlord's account.",
+        "Category":"Housing",
+        "amount": 1500.00
+        
+
+      },
+      {
+        "transactionId": "T002",
+        "date": "2024-10-03",
+        "Expense": "Fuel",
+        "description": "Got petrol from Engin garage.",
+        "Category":"Transportation",
+        "amount": 500.00
+      },
+      {
+        "transactionId": "T003",
+        "date": "2024-10-10",
+        "Expense": "Electricity",
+        "description": "Electricity bill payment",
+        "Category":"Housing",
+        "amount": 100.00
+      },
+      {
+        "transactionId": "T004",
+        "date": "2024-10-15",
+        "Expense": "Electricity",
+        "description": "Electricity bill payment",
+        "Category":"Housing",
+        "amount": 100.00
+      },
+      {
+        "transactionId": "T005",
+        "date": "2024-09-25",
+        "Expense": "Movies",
+        "description": "Electricity bill payment",
+        "Category":"Housing",
+        "amount": 100.00
+      },
+      {
+        "transactionId": "T006",
+        "date": "2024-10-15",
+        "Expense": "Electricity",
+        "description": "Electricity bill payment",
+        "Category":"Housing",
+        "amount": 100.00
+      },
+      {
+        "transactionId": "T007",
+        "date": "2024-10-15",
+        "Expense": "Electricity",
+        "description": "Electricity bill payment",
+        "Category":"Housing",
+        "amount": 100.00
+      },
+      {
+        "transactionId": "T008",
+        "date": "2024-09-1",
+        "Expense": "Electricity",
+        "description": "Electricity bill payment",
+        "Category":"Housing",
+        "amount": 100.00
+      },
+      {
+        "transactionId": "T009",
+        "date": "2024-08-05",
+        "Expense": "Netflix subscription",
+        "description": "Streaming service subscription",
+        "Category":"Entertainment",
+        "amount": 99.00
+      },
+      {
+        "transactionId": "T0010",
+        "date": "2024-09-25",
+        "Expense": "Transfer",
+        "description": "Transfered to my savings",
+        "Category":"Personal & family",
+        "amount": 1000.00
+      }
+    ]
+  }
+  
