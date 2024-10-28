@@ -1,14 +1,9 @@
 import { FilterDay } from "./Components/FilterDay";
-
-
-const App = () => {
 import React, { useState } from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid'; // Correct Heroicons v2 import
 import SignIn from './Components/SignIn';
 
-
-
-
+const App = () => {
 
 interface Transaction {
   id: string;
@@ -37,6 +32,7 @@ const App: React.FC = () => {
       setNewDescription(""); // Reset description input
     }
   };
+    
 
   // Calculate the total balance
   const calculateBalance = (): number => {
@@ -103,6 +99,7 @@ const App: React.FC = () => {
     </div>
   );
 };
+
 
 export default App;
 
