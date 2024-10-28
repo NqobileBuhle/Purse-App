@@ -16,58 +16,61 @@ export const FilterDay = () => {
     const filterData = () => {
 
         const currentDate = new Date();
+        return data.filter(item => {
+          const itemDate= new Date(item.date);
 
-        switch (selectedRange) {
+          switch (selectedRange) {
             case 'Day':
-                return data.filter(items => {
-                    const itemDate = new Date(items.date);
-                    return itemDate.toDateString() === currentDate.toDateString();
-                });
-            case "Week":
-                const oneWeekAgo = new Date();
-                oneWeekAgo.setDate(currentDate.getDate() - 7);
-                return data.filter(item => new Date(item.date) >= oneWeekAgo);
-            case "Month":
+                return (
+                  itemDate.toDateString() === currentDate.toDateString()
+                );
+
+            case 'Week':
+              const oneWeekAgo = new Date();
+              oneWeekAgo.setDate(currentDate.getDate() - 7);
+              return itemDate >= oneWeekAgo && itemDate <= currentDate;
+
+            case 'Month':
                 const oneMonthAgo = new Date();
                 oneMonthAgo.setMonth(currentDate.getMonth() - 1);
-                return data.filter(item => new Date(item.date) >= oneMonthAgo);
-            case "Year":
+                return itemDate >= oneMonthAgo && itemDate <= currentDate;
+
+            case 'Year':
                 const oneYearAgo = new Date();
                 oneYearAgo.setFullYear(currentDate.getFullYear() - 1);
-                return data.filter(item => new Date(item.date) >= oneYearAgo);
+                return itemDate >= oneYearAgo && itemDate <= currentDate;
+
             default:
-                return data;
+                return true;  
+           
 
         }
-    };
-    
-    const filteredData = filterData();
-    const timeRanges = ["Day", "Week", "Month", "Year"] as const;
+    });
+  }
 
   return (
-    <div className="flex justify-between items-center bg-gray-900 p-4 rounded-lg shadow-lg">
-      <div className="flex space-x-4">
-        {timeRanges.map((range) => (
-          <button
-            key={range}
-            onClick={() => setSelectedRange(range)}
-            className={`px-4 py-2 rounded-full bg-gray-700 text-gray-400 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 ${
-              selectedRange === range ? "bg-orange-500 text-white" : "bg-gray-700 text-gray-400"
-            }`}
-          >
-            {range}
-          </button>
-        ))}
-      </div>
+    <div className='flex justify-between items-center bg-gray-900 p-4 rounded-lg shadow-lg'>
+            {/* Map over time ranges to create buttons */}
+            <div className="flex space-x-4">
+                {(['Day', 'Week', 'Month', 'Year'] as TimeRange[]).map((range) => (
+                    <button
+                        key={range}
+                        onClick={() => setSelectedRange(range)}
+                        className={`px-4 py-2 rounded-full ${
+                            selectedRange === range ? 'bg-orange-500 text-white' : 'bg-gray-700 text-gray-400'
+                        } focus:outline-none  focus:ring-orange-500 focus:ring-opacity-50`}
+                    >
+                        {range}
+                    </button>
+                ))}
+            </div>
 
-      <div className="filtered-data mt-4">
-        <h2>Filtered Data ({selectedRange})</h2>
-        <ul>
-          {filteredData.map(item => (
-            <li key={item.id}>{item.date}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
+            {/* Display filtered data */}
+            <ul>
+                {filterData().map(item => (
+                    <li key={item.id}>{item.date}</li>
+                ))}
+            </ul>
+        </div>
   )
 }
