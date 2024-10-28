@@ -54,7 +54,7 @@ const SignIn: React.FC = () => {
 
           {/* Submit Button */}
           <button
-            type="submit"
+            type="submit"     
             className="w-full bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
           >
             Sign In
