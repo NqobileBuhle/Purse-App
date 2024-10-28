@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 
 type TimeRange = 'Day' | 'Week'| 'Month' | 'Year';
 
@@ -45,13 +45,13 @@ export const FilterDay = () => {
     const timeRanges = ["Day", "Week", "Month", "Year"] as const;
 
   return (
-    <div className="filter-component">
-      <div className="filter-buttons flex space-x-4">
+    <div className="flex justify-between items-center bg-gray-900 p-4 rounded-lg shadow-lg">
+      <div className="flex space-x-4">
         {timeRanges.map((range) => (
           <button
             key={range}
             onClick={() => setSelectedRange(range)}
-            className={`px-4 py-2 rounded-full ${
+            className={`px-4 py-2 rounded-full bg-gray-700 text-gray-400 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 ${
               selectedRange === range ? "bg-orange-500 text-white" : "bg-gray-700 text-gray-400"
             }`}
           >
