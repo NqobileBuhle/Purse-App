@@ -1,6 +1,13 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotifications } from "react-icons/io";
+import {Bar, Line } from 'react-chartjs-2';
+import { Chart, Filler } from 'chart.js';
+import myReport from '../../public/Report.json'
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
+Chart.register(Filler);
 
 //time range type
 type TimeRange = 'Day' | 'Week'| 'Month' | 'Year';
@@ -19,13 +26,41 @@ interface FilterComponentProps {
 export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
 
     const [selectedRange, setSelectedRange] = useState<TimeRange>('Week');
+    const [data, setData] = useState<{id: number, date: string}[]>([]);
+    const[loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    // will replace with report database/API
-    const data = [
-        {id: 1, date:'2024-10-01'},
-        {id: 2, date:'2024-10-18'},
-        {id: 3, date:'2024-09-21'},
-    ];
+    //Fetchinf data for the graphs
+    const fetchData = async () => {
+
+      const url = '../../public/Report.json'
+
+      setLoading(true);
+      setError(null);
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(myReport),
+
+      })
+        .then (response => response.json())
+        .then(data => {
+
+          console.log(data);
+
+        })
+        .catch (error => {
+          console.log('Error fetching data', error);
+        })
+
+    };
+
+    useEffect (() => {
+      fetchData();
+    }, []);
 
     //Filtering based on selected range
     const filterData = () => {
@@ -63,6 +98,32 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
     });
   }
 
+  //Preparing graphs
+  const chartData = filterData().map(item => ({ x: item.date, y: 1 }));
+    
+    const barChartData = {
+        labels: chartData.map(data => data.x),
+        datasets: [{
+            label: 'Occurrences',
+            data: chartData.map(data => data.y),
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        }]
+    };
+
+    const lineChartData = {
+        labels: chartData.map(data => data.x),
+        datasets: [{
+            label: 'Occurrences',
+            data: chartData.map(data => data.y),
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            fill: true,
+        }]
+    };
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>{error}</p>;
+
   return (
     <div className='flex justify-evenly items-center bg-gray-900 p-4 rounded-lg shadow-lg text-white'>
             {/* Map over time ranges to create buttons */}
@@ -80,12 +141,21 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
                 ))}
             </div>
 
-            {/* Display filtered data */}
-            <ul className=''>
-                {filterData().map(item => (
-                    <li key={item.id}>{item.date}</li>
-                ))}
-            </ul>
+            {/* Display filtered data in graphs */}
+            <div className='grid cols-1 md:grid-cols-2'>
+              {/* Bar chart */}
+              <div>
+                  <h2 className='tetx-lg font-semibold mb-4'>Payments</h2>
+                  <Bar data={barChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+              </div>
+
+              {/* Line chart */}
+              <div>
+                <h2 className='tetx-lg font-semibold mb-4'>Activity</h2>
+                <Line data={lineChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+              </div>
+            </div>
+            
 
             {/* Search, notifs and user profile section */}
             <div className="flex items-center space-x-6 ">
