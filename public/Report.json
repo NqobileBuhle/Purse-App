@@ -8,7 +8,6 @@
         "Category":"Housing",
         "amount": 1500.00
         
-
       },
       {
         "transactionId": "T002",
@@ -60,6 +59,14 @@
       },
       {
         "transactionId": "T008",
+        "date": "2024-08-13",
+        "Expense": "Transfered money",
+        "description": "Recieved transferred money from my sister",
+        "Category":"Payments",
+        "amount": 750.00
+      },
+      {
+        "transactionId": "T009",
         "date": "2024-09-25",
         "Expense": "Groceries",
         "description": "Monthly groceries",
@@ -67,7 +74,7 @@
         "amount": 1000.00
       },
       {
-        "transactionId": "T009",
+        "transactionId": "T0010",
         "date": "2024-08-05",
         "Expense": "Netflix subscription",
         "description": "Streaming service subscription",
@@ -75,12 +82,84 @@
         "amount": 99.00
       },
       {
-        "transactionId": "T0010",
+        "transactionId": "T0011",
         "date": "2024-09-25",
         "Expense": "Transfer",
         "description": "Transfered to my savings",
         "Category":"Personal & family",
         "amount": 500.00
+      },
+      {
+        "transactionId": "T0012",
+        "date": "2024-09-30",
+        "Expense": "Salary",
+        "description": "Monthly salary",
+        "Category":"Payments",
+        "amount": 15000.00
+      },
+      {
+        "transactionId": "T0013",
+        "date": "2024-07-25",
+        "Expense": "Recieved side hustle",
+        "description": "Money from selling",
+        "Category":"Payments",
+        "amount": 800.00
+      },
+      {
+        "transactionId": "T0014",
+        "date": "2024-07-30",
+        "Expense": "Salary",
+        "description": "Monthly salary",
+        "Category":"Payments",
+        "amount": 15000.00
+      },
+      {
+        "transactionId": "T0015",
+        "date": "2024-08-30",
+        "Expense": "Salary",
+        "description": "Monthly salary",
+        "Category":"Payments",
+        "amount": 15000.00
+      },
+      {
+        "transactionId": "T0016",
+        "date": "2024-10-30",
+        "Expense": "Salary",
+        "description": "Monthly salary",
+        "Category":"Payments",
+        "amount": 15000.00
+      },
+      {
+        "transactionId": "T0017",
+        "date": "2024-08-11",
+        "Expense": "Money recieved",
+        "description": "Payment from Tshepo",
+        "Category":"Payments",
+        "amount": 150.00
+      },
+      {
+        "transactionId": "T0018",
+        "date": "2024-07-17",
+        "Expense": "Money recieved",
+        "description": "Payment from Tshepo",
+        "Category":"Payments",
+        "amount": 150.00
+      },
+      {
+        "transactionId": "T0019",
+        "date": "2024-08-28",
+        "Expense": "Recieved side hustle",
+        "description": "Money from selling",
+        "Category":"Payments",
+        "amount": 300.00
+      },
+      {
+        "transactionId": "T0020",
+        "date": "2024-10-20",
+        "Expense": "Recieved side hustle",
+        "description": "Money from selling",
+        "Category":"Payments",
+        "amount": 1500.00
       }
     ]
   }

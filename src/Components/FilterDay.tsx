@@ -120,11 +120,10 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
             fill: true,
         }]
     };
-
-    if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
   return (
+    <>
     <div className='flex justify-evenly items-center bg-gray-900 p-4 rounded-lg shadow-lg text-white'>
             {/* Map over time ranges to create buttons */}
             <div className="flex space-x-4">
@@ -140,23 +139,6 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
                     </button>
                 ))}
             </div>
-
-            {/* Display filtered data in graphs */}
-            <div className='grid cols-1 md:grid-cols-2'>
-              {/* Bar chart */}
-              <div>
-                  <h2 className='tetx-lg font-semibold mb-4'>Payments</h2>
-                  <Bar data={barChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
-              </div>
-
-              {/* Line chart */}
-              <div>
-                <h2 className='tetx-lg font-semibold mb-4'>Activity</h2>
-                <Line data={lineChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
-              </div>
-            </div>
-            
-
             {/* Search, notifs and user profile section */}
             <div className="flex items-center space-x-6 ">
               {/* search */}
@@ -186,6 +168,21 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
 
               </div>
             </div>
+            
         </div>
+        <div className='grid cols-1 md:grid-cols-2'>
+        {/* Bar chart */}
+        <div>
+            <h2 className='tetx-lg font-semibold mb-4'>Payments</h2>
+            <Bar data={barChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+        </div>
+
+        {/* Line chart */}
+        <div>
+          <h2 className='tetx-lg font-semibold mb-4'>Activity</h2>
+          <Line data={lineChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+        </div>
+      </div>
+      </>
   )
 }
