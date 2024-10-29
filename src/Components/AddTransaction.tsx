@@ -1,70 +1,117 @@
 import React, { useState } from 'react';
-import { Transaction,AddTransactionProps } from './types';
+import { PlusIcon } from '@heroicons/react/24/solid'; 
 
-const AddTransaction: React.FC<AddTransactionProps> = ({ onAddTransaction }) => {
-  const [description, setDescription] = useState<string>('');
-  const [amount, setAmount] = useState<string>('');
-  const [type, setType] = useState<'income' | 'expense'>('income');
-  const [category, setCategory] = useState<string>('general');
+interface Transaction {
+  id: string;
+  description: string;
+  category: string;
+  amount: number;
+  date: Date;
+}
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const TransactionDashboard: React.FC = () => {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [newAmount, setNewAmount] = useState<number>(0);
+  const [newDescription, setNewDescription] = useState<string>("");
 
-    const transaction: Transaction = {
-      id: Date.now(), // unique ID using timestamp
-      description,
-      amount: parseFloat(amount),
-      type,
-      category,
-    };
+  const handleAddTransaction = () => {
+    if (newDescription && newAmount !== 0) {
+      const newTransaction: Transaction = {
+        id: Date.now().toString(),
+        description: newDescription,
+        category: "Custom",
+        amount: newAmount,
+        date: new Date(), // Capture the current date
+      };
+      setTransactions([...transactions, newTransaction]);
+      setNewAmount(0);
+      setNewDescription("");
+    }
+  };
 
-    onAddTransaction(transaction);
+  const calculateBalance = (): number => {
+    return transactions.reduce((total, transaction) => total + transaction.amount, 0);
+  };
 
-    // Reset the form fields
-    setDescription('');
-    setAmount('');
+  const formatDate = (date: Date): string => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    if (date.toDateString() === today.toDateString()) {
+      return "Today";
+    } else if (date.toDateString() === yesterday.toDateString()) {
+      return "Yesterday";
+    } else {
+      return date.toLocaleDateString();
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Description:</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
+    <div className="p-4">
+      {/* Dashboard */}
+      <h2 className="text-lg font-bold ml-4">:: Dashboard</h2>
+      <div className="bg-black text-white p-6 rounded-3xl shadow-lg mt-4">
+        <div className="mt-4">
+          {/* Dynamic total balance */}
+          <h3 className="text-4xl font-bold">R {calculateBalance().toLocaleString()}</h3>
+        </div>
       </div>
-      <div>
-        <label>Amount:</label>
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          required
-        />
+
+      {/* Transaction List */}
+      <div className="mt-4 flex justify-between items-center">
+        <h2 className="text-lg font-bold">All Expenses</h2>
+        <button className="text-gray-500">View All</button>
       </div>
-      <div>
-        <label>Type:</label>
-        <select value={type} onChange={(e) => setType(e.target.value as 'income' | 'expense')}>
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
+
+      {/* Grouped Transactions by Date */}
+      <ul className="space-y-4">
+        {["Today", "Yesterday", ...new Set(transactions.map(t => formatDate(t.date)).filter(d => d !== "Today" && d !== "Yesterday"))]
+          .map(dateLabel => (
+            <div key={dateLabel}>
+              <h3 className="text-gray-700 mt-6">{dateLabel}</h3>
+              {transactions
+                .filter(transaction => formatDate(transaction.date) === dateLabel)
+                .map(transaction => (
+                  <li key={transaction.id} className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                    <div>
+                      <h4 className="font-bold">{transaction.description}</h4>
+                      <p className="text-gray-500">{transaction.category}</p>
+                    </div>
+                    <span className="text-lg font-bold">R {transaction.amount.toLocaleString()}</span>
+                  </li>
+              ))}
+            </div>
+        ))}
+      </ul>
+
+      {/* Add Transaction */}
+      <div className="fixed w-full p-4 bg-white shadow-lg flex justify-end">
+        <div className="flex-grow">
+          <input
+            type="number"
+            className="w-full border p-4 text-3xl text-center"
+            placeholder="R 0.00"
+            value={newAmount === 0 ? '' : newAmount}
+            onChange={(e) => setNewAmount(parseFloat(e.target.value))}
+          />
+          <div className="mt-4">
+            <input
+              type="text"
+              className="w-full border p-2"
+              placeholder="Expense Description"
+              value={newDescription}
+              onChange={(e) => setNewDescription(e.target.value)}
+            />
+          </div>
+        </div>
+        
+        <button onClick={handleAddTransaction}>
+          <PlusIcon className="h-7 w-7 text-white bg-black rounded-full" />
+        </button>
       </div>
-      <div>
-        <label>Category:</label>
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="general">General</option>
-          <option value="food">Food</option>
-          <option value="transport">Transport</option>
-          <option value="entertainment">Entertainment</option>
-          {/* Add more categories as needed */}
-        </select>
-      </div>
-      <button type="submit">Add Transaction</button>
-    </form>
+    </div>
   );
 };
 
-export default AddTransaction;
+export default TransactionDashboard;
