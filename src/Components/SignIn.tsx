@@ -15,14 +15,15 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Sign In</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <div className=" p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="h-1 bg-orange-500 w-48 mb-6"></div>
+        <h2 className="text-2xl text-orange-500 font-bold mb-6 text-center">Sign In</h2>
         
         <form onSubmit={handleSignIn}>
           {/* Email Input */}
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            <label className="block text-orange-500 text-sm font-bold mb-2" htmlFor="email">
               Email
             </label>
             <input
@@ -38,7 +39,7 @@ const SignIn: React.FC = () => {
 
           {/* Password Input */}
           <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <label className="block text-orange-500 text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
             <input
@@ -55,7 +56,7 @@ const SignIn: React.FC = () => {
           {/* Submit Button */}
           <button
             type="submit"     
-            className="w-full bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+            className="w-full bg-orange-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-400 transition duration-300"
           >
             Sign In
           </button>
@@ -63,7 +64,7 @@ const SignIn: React.FC = () => {
         
         {/* Extra Options */}
         <div className="mt-4 text-center">
-          <p className="text-gray-600">Don't have an account? <a href="#" className="text-blue-500 hover:underline">Sign Up</a></p>
+          <p className="text-gray-400">Don't have an account? <a href="#" className="text-orange-500 hover:underline">Sign Up</a></p>
         </div>
       </div>
     </div>
