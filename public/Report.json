@@ -28,43 +28,43 @@
       },
       {
         "transactionId": "T004",
-        "date": "2024-10-15",
-        "Expense": "Electricity",
-        "description": "Electricity bill payment",
-        "Category":"Housing",
-        "amount": 100.00
+        "date": "2024-08-15",
+        "Expense": "Snacks",
+        "description": "Snacks for braai",
+        "Category":"Food & dining",
+        "amount": 130.80
       },
       {
         "transactionId": "T005",
-        "date": "2024-09-25",
-        "Expense": "Movies",
-        "description": "Electricity bill payment",
-        "Category":"Housing",
-        "amount": 100.00
+        "date": "2024-08-30",
+        "Expense": "Concert tickets",
+        "description": "Tickets for piano concert",
+        "Category":"Entertainment",
+        "amount": 150.00
       },
       {
         "transactionId": "T006",
-        "date": "2024-10-15",
-        "Expense": "Electricity",
-        "description": "Electricity bill payment",
-        "Category":"Housing",
-        "amount": 100.00
+        "date": "2024-09-05",
+        "Expense": "Fuel",
+        "description": "Refueled petrol for the car",
+        "Category":"Transportation",
+        "amount": 150.00
       },
       {
         "transactionId": "T007",
-        "date": "2024-10-15",
-        "Expense": "Electricity",
-        "description": "Electricity bill payment",
-        "Category":"Housing",
+        "date": "2024-09-15",
+        "Expense": "Purchase",
+        "description": "Clothes shopping",
+        "Category":"Personal & family",
         "amount": 100.00
       },
       {
         "transactionId": "T008",
-        "date": "2024-09-1",
-        "Expense": "Electricity",
-        "description": "Electricity bill payment",
-        "Category":"Housing",
-        "amount": 100.00
+        "date": "2024-09-25",
+        "Expense": "Groceries",
+        "description": "Monthly groceries",
+        "Category":"Food & dining",
+        "amount": 1000.00
       },
       {
         "transactionId": "T009",
@@ -80,7 +80,7 @@
         "Expense": "Transfer",
         "description": "Transfered to my savings",
         "Category":"Personal & family",
-        "amount": 1000.00
+        "amount": 500.00
       }
     ]
   }
