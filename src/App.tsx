@@ -1,6 +1,7 @@
 import React from 'react';
 import SignUp from './Components/SignUp';
-// import AddTransaction from './Components/AddTransaction';
+import AddTransaction from './Components/AddTransaction';
+import { FilterDay } from './Components/FilterDay';
 
 const App = () => {
   const currentUser = {
@@ -9,8 +10,9 @@ const App = () => {
   };
   return (
     <div>
-      <SignUp/>
-      {/* <AddTransaction/> */}
+      {/* <SignUp/> */}
+      <AddTransaction/>
+      {/* <FilterDay currentUser={null}/> */}
       
     </div>
   )

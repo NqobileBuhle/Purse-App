@@ -105,7 +105,7 @@ const TransactionDashboard: React.FC = () => {
       </ul>
 
       {/* Add Expense Button */}
-      <button onClick={toggleModal} className="fixed bottom-4 right-4 bg-black text-white p-4 rounded-full shadow-lg">
+      <button onClick={toggleModal} className="fixed bottom-6 right-4 bg-black text-white p-4 rounded-full shadow-lg">
         <PlusIcon className="h-7 w-7" />
       </button>
 
@@ -115,13 +115,13 @@ const TransactionDashboard: React.FC = () => {
           <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg relative">
             {/* Close Button */}
             <button
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+              className="absolute top-4 right-4 text-red-500 hover:text-gray-800 font-bold"
               onClick={toggleModal}
             >
               ×
             </button>
 
-            <h2 className="text-2xl font-bold mb-6 text-center">Add New Expense</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center ">Add New Expense</h2>
 
             <div>
               <input
@@ -154,7 +154,7 @@ const TransactionDashboard: React.FC = () => {
 
             <button
               onClick={handleAddTransaction}
-              className="w-full bg-orange-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-400 mt-6"
+              className="w-full bg-gray-900 text-white font-bold py-2 px-4 rounded-lg  mt-6"
             >
               Add Expense
             </button>
