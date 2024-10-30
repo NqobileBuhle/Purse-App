@@ -1,4 +1,8 @@
 import { FilterDay } from './Components/FilterDay'
+import TransactionsReport from './Pages/TransactionsReport';
+import AddTransaction from './Components/AddTransaction';
+import SignUp from './Components/SignUp';
+import SignIn from './Components/SignIn';
 
 const App = () => {
   const currentUser = {
@@ -7,7 +11,12 @@ const App = () => {
   };
   return (
     <div className='App'>
+      <SignUp/>
+      <SignIn/>
       <FilterDay currentUser= {currentUser} />
+      <TransactionsReport/>
+      <AddTransaction/>
+      
     </div>
   )
 }
