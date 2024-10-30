@@ -42,8 +42,8 @@ const ActivitiesGraph = () => {
             borderWidth: 2,
             tension: 0.4, // smooth curve
             pointBackgroundColor: '#805AD5',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
+            pointBorderColor: '#805AD5',
+            pointHoverBackgroundColor: '#805AD5',
             pointHoverBorderColor: '#805AD5',
           },
         ],
@@ -60,9 +60,9 @@ const ActivitiesGraph = () => {
     };
 
     return (
-      <div style={{ backgroundColor: '#333', padding: '1rem', borderRadius: '15px' }}>
-      <h3 style={{ color: '#fff', textAlign: 'center' }}>Activities</h3>
-      <Line data={lineChartData} options={options}/>
+      <div className='bg-slate-800 rounded-2xl'>
+      <h3 className='text-white text-2xl text-center font-semibold pb-3'>Activities</h3>
+      <Line data={lineChartData} options={options} className='bg-slate-800 rounded-2xl'/>
     </div>
   
         

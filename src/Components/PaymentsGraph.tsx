@@ -55,8 +55,8 @@ const PaymentsGraph = () => {
     };
 
     return (
-        <div className='bg-gray-900 rounded-lg'>
-            <h2 className='text-white text-2xl text-center font-semibold'>Payments</h2>
+        <div className='bg-slate-800 rounded-2xl'>
+            <h2 className='text-white text-2xl text-center font-semibold pb-3'>Payments</h2>
             <Bar data={chartData} options={options} />;
         </div>
         
