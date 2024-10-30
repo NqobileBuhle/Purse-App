@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SignIn from './SignIn';
+SignIn
+
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -11,6 +15,7 @@ const SignUp: React.FC = () => {
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
+
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
@@ -26,6 +31,7 @@ const SignUp: React.FC = () => {
     console.log('Email:', email);
     console.log('Password:', password);
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
@@ -126,7 +132,7 @@ const SignUp: React.FC = () => {
         {/* Extra Options */}
         <div className="mt-4 text-center">
           <p className="text-gray-600">
-            Already have an account? <a href="#" className="text-orange-500 hover:underline">Sign In</a>
+            Already have an account? <a href="" className="text-orange-500 hover:underline"><button>Go to About</button></a>
           </p>
         </div>
       </div>

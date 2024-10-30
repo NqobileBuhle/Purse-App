@@ -1,11 +1,16 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotifications } from "react-icons/io";
-import ActivitiesGraph from './ActivitiesGraph';
-import PaymentsGraph from './PaymentsGraph';
+import {Bar, Line } from 'react-chartjs-2';
+import { Chart, Filler } from 'chart.js';
+import myReport from '../../public/Report.json'
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
+Chart.register(Filler);
 
 //time range type
-type TimeRange = 'Day' | 'Week'| 'Month' | 'Year';
+type TimeRange = 'Day' | 'Week' | 'Month' | 'Year';
 
 //user profile type
 type User = {
@@ -18,50 +23,78 @@ interface FilterComponentProps {
   currentUser: User | null;
 }
 
-export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
+export const FilterDay: React.FC<FilterComponentProps> = ({ currentUser }) => {
 
     const [selectedRange, setSelectedRange] = useState<TimeRange>('Week');
+    const [data, setData] = useState<{id: number, date: string}[]>([]);
+    const[loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    // will replace with report database/API
-    const data = [
-        {id: 1, date:'2024-10-01'},
-        {id: 2, date:'2024-10-18'},
-        {id: 3, date:'2024-09-21'},
-    ];
+    //Fetchinf data for the graphs
+    const fetchData = async () => {
 
-    //Filtering based on selected range
-    const filterData = () => {
+      const url = '../../public/Report.json'
 
-        const currentDate = new Date();
-        return data.filter(item => {
-          const itemDate= new Date(item.date);
+      setLoading(true);
+      setError(null);
 
-          switch (selectedRange) {
-            case 'Day':
-                return (
-                  itemDate.toDateString() === currentDate.toDateString()
-                );
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(myReport),
 
-            case 'Week':
-              const oneWeekAgo = new Date();
-              oneWeekAgo.setDate(currentDate.getDate() - 7);
-              return itemDate >= oneWeekAgo && itemDate <= currentDate;
+      })
+        .then (response => response.json())
+        .then(data => {
 
-            case 'Month':
-                const oneMonthAgo = new Date();
-                oneMonthAgo.setMonth(currentDate.getMonth() - 1);
-                return itemDate >= oneMonthAgo && itemDate <= currentDate;
+          console.log(data);
 
-            case 'Year':
-                const oneYearAgo = new Date();
-                oneYearAgo.setFullYear(currentDate.getFullYear() - 1);
-                return itemDate >= oneYearAgo && itemDate <= currentDate;
+        })
+        .catch (error => {
+          console.log('Error fetching data', error);
+        })
 
-            default:
-                return true;  
-           
+    };
 
-        }
+    useEffect (() => {
+      fetchData();
+    }, []);
+
+  //Filtering based on selected range
+  const filterData = () => {
+
+    const currentDate = new Date();
+    return data.filter(item => {
+      const itemDate = new Date(item.date);
+
+      switch (selectedRange) {
+        case 'Day':
+          return (
+            itemDate.toDateString() === currentDate.toDateString()
+          );
+
+        case 'Week':
+          const oneWeekAgo = new Date();
+          oneWeekAgo.setDate(currentDate.getDate() - 7);
+          return itemDate >= oneWeekAgo && itemDate <= currentDate;
+
+        case 'Month':
+          const oneMonthAgo = new Date();
+          oneMonthAgo.setMonth(currentDate.getMonth() - 1);
+          return itemDate >= oneMonthAgo && itemDate <= currentDate;
+
+        case 'Year':
+          const oneYearAgo = new Date();
+          oneYearAgo.setFullYear(currentDate.getFullYear() - 1);
+          return itemDate >= oneYearAgo && itemDate <= currentDate;
+
+        default:
+          return true;
+
+
+      }
     });
   }
 
@@ -82,14 +115,6 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
                     </button>
                 ))}
             </div>
-
-            {/* Display filtered data */}
-            <ul className=''>
-                {filterData().map(item => (
-                    <li key={item.id}>{item.date}</li>
-                ))}
-            </ul>
-
             {/* Search, notifs and user profile section */}
             <div className="flex items-center space-x-6 ">
               {/* search */}
@@ -121,11 +146,19 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
             </div>
             
         </div>
-        <div className='bg-gray-900 flex space-x-7 justify-center py-10'>
-          <ActivitiesGraph />
-          <PaymentsGraph />
+        <div className='grid cols-1 md:grid-cols-2'>
+        {/* Bar chart */}
+        <div>
+            <h2 className='tetx-lg font-semibold mb-4'>Payments</h2>
+            <Bar data={barChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
         </div>
-       
-  </>
+
+        {/* Line chart */}
+        <div>
+          <h2 className='tetx-lg font-semibold mb-4'>Activity</h2>
+          <Line data={lineChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+        </div>
+      </div>
+      </>
   )
 }
