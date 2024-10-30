@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SignIn from "./Components/SignIn"
 import SignUp from "./Components/SignUp" 
 import Dashboard from "./Dashboard";
-=======
+
 import { FilterDay } from './Components/FilterDay'
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
     profilePic: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD116U9ZCk8bEaanCeB5rSCC2uqY5Ka_2_EA&s",
   };
   return (
-<<<<<<< HEAD
+
     <Router>
       <Routes>
         <Route path="/login" element={<SignIn />} />
@@ -24,7 +24,7 @@ const App = () => {
       </Routes>
     </Router>
   );
-=======
+
     <div className='App'>
       <SignUp/>
       <SignIn/>
