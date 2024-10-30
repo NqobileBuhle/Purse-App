@@ -1,10 +1,19 @@
 
 
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // Navigate to the dashboard after login (no authentication required)
+    navigate("/dashboard");
+  };
 
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,7 +63,8 @@ const SignIn: React.FC = () => {
 
           {/* Submit Button */}
           <button
-            type="submit"     
+            type="submit" 
+            onClick={handleLogin}    
             className="w-full bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
           >
             Sign In
@@ -65,6 +75,7 @@ const SignIn: React.FC = () => {
         <div className="mt-4 text-center">
           <p className="text-gray-600">Don't have an account? <a href="#" className="text-blue-500 hover:underline">Sign Up</a></p>
         </div>
+  
       </div>
     </div>
   );
