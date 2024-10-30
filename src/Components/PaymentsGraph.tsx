@@ -15,7 +15,7 @@ interface Transaction {
     amount: number;
   }
 const PaymentsGraph = () => {
-    // const labels = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+    const labels = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     const [paymentsData, setPaymentsData] = useState<Transaction[]>([]);
 
     useEffect(() => {
@@ -28,16 +28,17 @@ const PaymentsGraph = () => {
           })
           .catch(error => console.error('Error fetching data:', error));
       }, []);
+
       console.log(paymentsData);
 
       const chartData = {
-        labels: paymentsData.map(item => item.date),
+        labels: labels,
         datasets: [
           {
             label: 'Money recieved',
             data: paymentsData.map(item => item.amount),
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: '#f97316',
+            borderColor: '#f97316',
             borderWidth: 1,
           },
         ],
@@ -54,7 +55,7 @@ const PaymentsGraph = () => {
     };
 
     return (
-        <div className='bg-gray-900'>
+        <div className='bg-gray-900 rounded-lg'>
             <h2 className='text-white text-2xl text-center font-semibold'>Payments</h2>
             <Bar data={chartData} options={options} />;
         </div>

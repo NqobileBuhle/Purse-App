@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotifications } from "react-icons/io";
-//import ActivitiesGraph from './PaymentsGraph';
+import ActivitiesGraph from './ActivitiesGraph';
 import PaymentsGraph from './PaymentsGraph';
 
 //time range type
@@ -121,7 +121,11 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
             </div>
             
         </div>
-        <PaymentsGraph />
+        <div className='bg-gray-900 flex space-x-7'>
+          <ActivitiesGraph />
+          <PaymentsGraph />
+        </div>
+       
   </>
   )
 }
