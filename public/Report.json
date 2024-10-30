@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "transactions": [
       {
         "transactionId": "T001",
@@ -164,3 +165,98 @@
     ]
   }
   
+=======
+	"transactions": [
+		{
+			"transactionId": "T001",
+			"date": "2024-10-01",
+			"expense": "Rent",
+			"description": "Direct payment to landlord's account.",
+			"category": "Housing",
+			"categoryName": "Housing",
+			"amount": 1500.0
+		},
+		{
+			"transactionId": "T002",
+			"date": "2024-10-03",
+			"expense": "Fuel",
+			"description": "Got petrol from Engin garage.",
+			"category": "Transportation",
+			"categoryName": "Transportation",
+			"amount": 500.0
+		},
+		{
+			"transactionId": "T003",
+			"date": "2024-10-10",
+			"expense": "Electricity",
+			"description": "Electricity bill payment",
+			"category": "Housing",
+			"categoryName": "Housing",
+			"amount": 100.0
+		},
+		{
+			"transactionId": "T004",
+			"date": "2024-08-15",
+			"expense": "Snacks",
+			"description": "Snacks for braai",
+			"category": "FoodDining",
+			"categoryName": "Food & Dining",
+			"amount": 130.8
+		},
+		{
+			"transactionId": "T005",
+			"date": "2024-08-30",
+			"expense": "Concert tickets",
+			"description": "Tickets for piano concert",
+			"category": "Entertainment",
+			"categoryName": "Entertainment",
+			"amount": 150.0
+		},
+		{
+			"transactionId": "T006",
+			"date": "2024-09-05",
+			"expense": "Fuel",
+			"description": "Refueled petrol for the car",
+			"category": "Transportation",
+			"categoryName": "Transportation",
+			"amount": 150.0
+		},
+		{
+			"transactionId": "T007",
+			"date": "2024-09-15",
+			"expense": "Purchase",
+			"description": "Clothes shopping",
+			"category": "PersonalFamily",
+			"categoryName": "Personal & family",
+			"amount": 100.0
+		},
+		{
+			"transactionId": "T008",
+			"date": "2024-09-25",
+			"expense": "Groceries",
+			"description": "Monthly groceries",
+			"category": "FoodDining",
+			"categoryName": "Food & Dining",
+			"amount": 1000.0
+		},
+		{
+			"transactionId": "T009",
+			"date": "2024-08-05",
+			"expense": "Netflix subscription",
+			"description": "Streaming service subscription",
+			"category": "Entertainment",
+			"categoryName": "Entertainment",
+			"amount": 99.0
+		},
+		{
+			"transactionId": "T0010",
+			"date": "2024-09-25",
+			"expense": "Transfer",
+			"description": "Transfered to my savings",
+			"category": "PersonalFamily",
+			"categoryName": "Personal & family",
+			"amount": 500.0
+		}
+	]
+}
+>>>>>>> b2dc518a95b85fa97c557758ac2cff0f1a5faac0

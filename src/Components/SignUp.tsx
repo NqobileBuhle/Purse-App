@@ -10,6 +10,7 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [agreeToTerms, setAgreeToTerms] = useState<boolean>(false);
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,6 +18,10 @@ const SignUp: React.FC = () => {
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
+      return;
+    }
+    if (!agreeToTerms) {
+      setError('You must agree to the terms and conditions');
       return;
     }
     
@@ -31,9 +36,7 @@ const SignUp: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="p-8 rounded-lg shadow-md w-full max-w-md">
-        {/* Orange Line */}
         <div className="h-1 bg-orange-500 w-48 mb-6"></div>
-
         <h2 className="text-2xl text-orange-500 font-bold mb-6 text-center">Sign Up</h2>
 
         {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -103,10 +106,24 @@ const SignUp: React.FC = () => {
             />
           </div>
 
+          {/* Terms and Conditions Checkbox */}
+          <div className="mb-6 flex items-center">
+            <input
+              id="terms"
+              type="checkbox"
+              checked={agreeToTerms}
+              onChange={(e) => setAgreeToTerms(e.target.checked)}
+              className="mr-2"
+            />
+            <label htmlFor="terms" className="text-orange-500 text-sm">
+              I agree to the Terms and Conditions
+            </label>
+          </div>
+
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-orange-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-300 transition duration-300"
+            className="w-full bg-orange-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-200 transition duration-300"
           >
             Sign Up
           </button>
