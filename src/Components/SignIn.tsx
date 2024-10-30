@@ -64,14 +64,9 @@ const SignIn: React.FC = () => {
 
           {/* Submit Button */}
           <button
-<<<<<<< HEAD
             type="submit" 
             onClick={handleLogin}    
             className="w-full bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
-=======
-            type="submit"     
-            className="w-full bg-orange-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-400 transition duration-300"
->>>>>>> ed1c6707ff5a242d7e75b4058d3bee7aaea1a063
           >
             Sign In
           </button>

@@ -20,21 +20,10 @@ const App = () => {
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/" element={<SignIn />} />
+        <Route path="/" element={<SignUp />} />
       </Routes>
     </Router>
   );
-
-    <div className='App'>
-      <SignUp/>
-      <SignIn/>
-      <FilterDay currentUser= {currentUser} />
-      <TransactionsReport/>
-      <AddTransaction/>
-      
-    </div>
-  )
->>>>>>> ed1c6707ff5a242d7e75b4058d3bee7aaea1a063
 }
 
 export default App;

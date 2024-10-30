@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route,useNavigate } from "react-router-dom";
 import SignIn from './SignIn';
-SignIn
 
 
 const SignUp: React.FC = () => {
@@ -11,6 +10,13 @@ const SignUp: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [agreeToTerms, setAgreeToTerms] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // Navigate to the dashboard after login (no authentication required)
+    navigate("/dashboard");
+  };
+  
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,6 +30,7 @@ const SignUp: React.FC = () => {
       setError('You must agree to the terms and conditions');
       return;
     }
+   
     
     setError('');
     console.log('Sign Up clicked');
@@ -123,6 +130,7 @@ const SignUp: React.FC = () => {
           {/* Submit Button */}
           <button
             type="submit"
+            onClick={handleLogin} 
             className="w-full bg-orange-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-200 transition duration-300"
           >
             Sign Up
@@ -132,7 +140,7 @@ const SignUp: React.FC = () => {
         {/* Extra Options */}
         <div className="mt-4 text-center">
           <p className="text-gray-600">
-            Already have an account? <a href="" className="text-orange-500 hover:underline"><button>Go to About</button></a>
+            Already have an account? <a href="" className="text-orange-500 hover:underline"><button>Sign In</button></a>
           </p>
         </div>
       </div>

@@ -33,7 +33,7 @@ export const FilterDay: React.FC<FilterComponentProps> = ({ currentUser }) => {
     //Fetchinf data for the graphs
     const fetchData = async () => {
 
-      const url = '../../public/Report.json'
+      const url = '../../Report.json'
 
       setLoading(true);
       setError(null);
@@ -146,19 +146,7 @@ export const FilterDay: React.FC<FilterComponentProps> = ({ currentUser }) => {
             </div>
             
         </div>
-        <div className='grid cols-1 md:grid-cols-2'>
-        {/* Bar chart */}
-        <div>
-            <h2 className='tetx-lg font-semibold mb-4'>Payments</h2>
-            <Bar data={barChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
-        </div>
-
-        {/* Line chart */}
-        <div>
-          <h2 className='tetx-lg font-semibold mb-4'>Activity</h2>
-          <Line data={lineChartData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
-        </div>
-      </div>
+        
       </>
   )
 }
