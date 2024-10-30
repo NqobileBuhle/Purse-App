@@ -49,20 +49,25 @@ const ActivitiesGraph = () => {
         ],
       };
 
-    const options = {
-        responsive: true,
+      const lineChartOptions = {
         plugins: {
-            legend: {
-                position: 'top' as const,
+          tooltip: {
+            callbacks: {
+              // Customizing tooltip to show Expense name and amount
+              label: (context: any) => {
+                const expense = activitiesData[context.dataIndex].Expense;
+                const amount = activitiesData[context.dataIndex].amount;
+                return `${expense}: R${amount}`;
+              },
             },
-            
+          },
         },
-    };
+      };
 
     return (
       <div className='bg-slate-800 rounded-2xl'>
       <h3 className='text-white text-2xl text-center font-semibold pb-3'>Activities</h3>
-      <Line data={lineChartData} options={options} className='bg-slate-800 rounded-2xl'/>
+      <Line data={lineChartData} options={lineChartOptions} className='bg-slate-800 rounded-2xl'/>
     </div>
   
         

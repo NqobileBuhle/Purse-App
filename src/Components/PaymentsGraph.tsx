@@ -14,6 +14,11 @@ interface Transaction {
     Category: string;
     amount: number;
   }
+  const getDayOfWeek = (dateString: string): string => {
+    const date = new Date(dateString);
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return daysOfWeek[date.getUTCDay()];
+  };
 const PaymentsGraph = () => {
     const labels = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     const [paymentsData, setPaymentsData] = useState<Transaction[]>([]);
@@ -44,20 +49,24 @@ const PaymentsGraph = () => {
         ],
       };
 
-    const options = {
-        responsive: true,
+      const barChartOptions = {
         plugins: {
-            legend: {
-                position: 'top' as const,
+          tooltip: {
+            callbacks: {
+              // Customizing tooltip to show Expense name and amount
+              label: (context: any) => {
+                const expense = paymentsData[context.dataIndex].Expense;
+                const amount = paymentsData[context.dataIndex].amount;
+                return `${expense}: R${amount}`;
+              },
             },
-            
+          },
         },
-    };
-
+      };
     return (
         <div className='bg-slate-800 rounded-2xl'>
             <h2 className='text-white text-2xl text-center font-semibold pb-3'>Payments</h2>
-            <Bar data={chartData} options={options} />;
+            <Bar data={chartData} options={barChartOptions} />;
         </div>
         
     ) 
