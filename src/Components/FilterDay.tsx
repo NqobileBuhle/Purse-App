@@ -121,7 +121,7 @@ export const FilterDay: React.FC<FilterComponentProps> = ({currentUser}) => {
             </div>
             
         </div>
-        <div className='bg-gray-900 flex space-x-7 justify-center py-10'>
+        <div className='bg-gray-900 grid cols-1 md:grid-cols-2 gap-5 justify-center py-10 px-10'>
           <ActivitiesGraph />
           <PaymentsGraph />
         </div>
