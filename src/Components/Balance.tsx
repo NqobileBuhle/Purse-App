@@ -17,7 +17,7 @@ function Balance() {
             {
                 data: [3, 0], // 68% spent, 32% remaining
                 backgroundColor: ['#8b5cf6', '#333'],
-                borderWidth: 40,
+                borderWidth: 10,
             },
         ],
     };
