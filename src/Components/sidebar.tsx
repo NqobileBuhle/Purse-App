@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { IoMdHome, IoMdSettings, IoMdLogOut } from "react-icons/io";
 import { GiPieChart } from "react-icons/gi";
 import { FaRegKeyboard } from "react-icons/fa";
 import { BsMoon, BsSun } from "react-icons/bs";
 
-const Sidebar = ({ handletodashboard, handletoaddtrans, handletotransrepo, handletoSettings }) => {
+const Sidebar = () => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+    const navigate = useNavigate();
+
+    const handletoSettings = () => {
+        navigate("/Settings");
+    };
+    const handletodashboard = () => {
+        navigate("/Dashboard");
+    };
+    const handletoaddtrans = () => {
+        navigate("/addTrans");
+    };
+    const handletotransrepo = () => {
+        navigate("/transreport");
+    };
 
     useEffect(() => {
         if (theme === 'dark') {

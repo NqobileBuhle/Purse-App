@@ -57,7 +57,7 @@ const ProfilePicture: React.FC = () => (
                 Upload new photo
             </button>
         </div>
-        <p className="text-xs text-gray-500 mt-2 text-center">At least 800×800 px recommended. JPG or PNG is allowed.</p>
+        <p className="text-xs text-xl font-bold mb-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg mt-2 text-center">At least 800×800 px recommended. JPG or PNG is allowed.</p>
     </div>
 );
 
@@ -67,7 +67,7 @@ const PersonalInfo: React.FC<{ userInfo: UserInfo; onEdit: () => void }> = ({ us
             Personal Info
             <button onClick={onEdit} className="text-blue-500 text-sm">Edit</button> {/* Edit button here */}
         </h3>
-        <div className="mt-4 space-y-4">
+        <div className="mt-4 space-y-4 text-xl font-bold mb-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
             <InfoRow label="Full Name" value={userInfo.name} />
             <InfoRow label="Email" value={userInfo.email} />
             <InfoRow label="Phone" value={userInfo.phone} />
