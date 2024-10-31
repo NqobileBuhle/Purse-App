@@ -25,7 +25,7 @@ function Dashboard() {
         <div className="bg-gray-100 flex items-center justify-center">
             <Sidebar/>
             <div className="container mx-auto p-4">
-                <FilterDay  />
+            <FilterDay  />
                 <div className="grid grid-cols-4 gap-2">
                 <div className="col-span-3  ml-[10rem] flex h-50 rounded-lg">
                         <Card />
@@ -67,8 +67,8 @@ function Dashboard() {
                 
         
       
-//     </div>
-//   </div>
+   </div>
+   </div>
 // </div>
 
 

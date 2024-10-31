@@ -89,6 +89,33 @@
 			"category": "PersonalFamily",
 			"categoryName": "Personal & family",
 			"amount": 500.0
+		},
+		{
+			"transactionId": "T0011",
+			"date": "2024-09-30",
+			"expense": "Income",
+			"description": "Monthly income",
+			"category": "Payments",
+			"categoryName": "Payments",
+			"amount": 15000.0
+		},
+		{
+			"transactionId": "T0012",
+			"date": "2024-10-30",
+			"expense": "Income",
+			"description": "Monthly income",
+			"category": "Payments",
+			"categoryName": "Payments",
+			"amount": 15000.0
+		},
+		{
+			"transactionId": "T0013",
+			"date": "2024-09-25",
+			"expense": "Side business",
+			"description": "Money from selling clothes",
+			"category": "Payments",
+			"categoryName": "Payments",
+			"amount": 800.0
 		}
 	]
 }
