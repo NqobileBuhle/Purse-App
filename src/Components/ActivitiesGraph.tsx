@@ -41,34 +41,29 @@ const ActivitiesGraph: React.FC = () => {
           }, { ...weeklyPayments });
 
         setWeeklyPayments(paymentsByDay);
-
       })
       .catch(error => console.error('Error fetching data:', error));
-
   }, []);
 
   const lineChartData = {
     labels: Object.keys(weeklyPayments), // Days of the week
     datasets: [
       {
-        label: 'Total spent on activities',
+        label: 'Total payments recieved',
         data: Object.values(weeklyPayments), // Total payments for each day
-        backgroundColor: '#f97316',
-        borderColor: '#f97316',
+        backgroundColor: '#6b21a8',
+        borderColor: '#6b21a8',
         borderWidth: 1,
-        tension: 0.4, // smooth curve
-        pointBackgroundColor: '#f97316',
-        pointRadius: 0.2,
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
+        pointRadius: 1,
+        tension: 0.4,
+        
       },
     ],
   };
 
-
   return (
     <div style={{ backgroundColor: '#333', padding: '1rem', borderRadius: '15px' }}>
-      <h3 className = 'color-#fff text-center text-white'>Activities</h3>
+      <h3 className = 'color-#fff text-center text-white'>Payments</h3>
       <Line data={lineChartData} />
     </div>
   );
