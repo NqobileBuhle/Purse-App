@@ -24,6 +24,10 @@ const Sidebar: React.FC = () => {
         // Navigate to the dashboard after login (no authentication required)
         navigate("/addTrans");
     };
+    const handletotransrepo = () => {
+        // Navigate to the dashboard after login (no authentication required)
+        navigate("/transreport");
+    };
 
 
 
@@ -38,7 +42,7 @@ const Sidebar: React.FC = () => {
                     <a href="" onClick={handletoaddtrans} className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
                         <GiPieChart className="mr-4 mb-10" size={25} />
                     </a>
-                    <a href="form.html" className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
+                    <a href="" onClick={handletotransrepo} className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
                         <FaRegKeyboard className="mr-4 mb-10" size={25} />
                     </a>
                     <a href="form.html" className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
