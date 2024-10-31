@@ -21,7 +21,7 @@ function Dashboard() {
         navigate("/transreport");
     };
     return ( 
-        <div className="flex flex-col md:flex-row min-h-screen bg-gray-900">
+        <div className="flex flex-col md:flex-row p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
             {/* Sidebar */}
             <Sidebar />
 
