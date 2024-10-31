@@ -17,7 +17,7 @@ function Balance() {
             {
                 data: [3, 0], // 68% spent, 32% remaining
                 backgroundColor: ['#8b5cf6', '#333'],
-                borderWidth: 0,
+                borderWidth: 40,
             },
         ],
     };
@@ -32,7 +32,7 @@ function Balance() {
     };
     return (
         
-        <div className="bg-gray-800 rounded-lg p-6 shadow-lg text-white flex h-100 flex-col items-center">
+        <div className="bg-gray-800 rounded-lg p-12 shadow-lg text-white flex flex-col items-center">
             <div className="flex justify-center items-center mb-6">
                 <div className="relative">
                     <Doughnut data={data} options={options} width={100} height={100} />
