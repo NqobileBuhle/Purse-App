@@ -100,52 +100,52 @@ export const FilterDay: React.FC<FilterComponentProps> = ({ currentUser }) => {
 
   return (
     <>
-    <div className='flex justify-evenly items-center bg-gray-900 p-4 rounded-lg shadow-lg text-white'>
-            {/* Map over time ranges to create buttons */}
-            <div className="flex space-x-4">
-                {(['Day', 'Week', 'Month', 'Year'] as TimeRange[]).map((range) => (
-                    <button
-                        key={range}
-                        onClick={() => setSelectedRange(range)}
-                        className={`px-4 py-2 rounded-full ${
-                            selectedRange === range ? 'bg-orange-500 text-white' : 'bg-gray-700 text-gray-400'
-                        } focus:outline-none  focus:ring-orange-500 focus:ring-opacity-50`}
-                    >
-                        {range}
-                    </button>
-                ))}
-            </div>
-            {/* Search, notifs and user profile section */}
-            <div className="flex items-center space-x-6 ">
-              {/* search */}
-              <div className="cursor-pointer">
-                <CiSearch size={26}/>
-                
-              </div>
-              {/* notifs */}
-              <div className="relative cursor-pointer">
-                <IoIosNotifications size={26} />
-                <span className='absolute top-0 right-1 h-2 w-2 rounded-full ring-2 ring-gray-900 bg-orange-500'></span>
-              </div>
-              {/* profile signed in */}
-              <div className='flex items-center space-x-2'>
-                {currentUser ? (
-                  <div className="flex items-center space-x-2">
-                    <span className="text-gray-400">{currentUser.name}</span>
-                    <img
-                      src={currentUser.profilePic}
-                      alt="Profile"
-                      className="w-10 h-10 rounded-full border-2 border-gray-600"
-                    />
-                </div>
-              ) : (
-                <div className="text-gray-400">Sign in to view profile</div>
-              )}
-
-              </div>
-            </div>
-            
+      <div className="flex justify-between items-center bg-gray-900 p-4 rounded-lg shadow-lg text-white">
+        {/* Time Range Buttons */}
+        <div className="flex space-x-2 md:space-x-2">
+          {(['Day', 'Week', 'Month', 'Year']).map((range) => (
+            <button
+              key={range}
+              onClick={() => setSelectedRange(range)}
+              className={`px-3 py-1 md:px-4 md:py-2 rounded-full ${selectedRange === range ? 'bg-orange-500 text-white' : 'bg-gray-700 text-gray-400'
+                } focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 text-sm md:text-base`}
+            >
+              {range}
+            </button>
+          ))}
         </div>
+
+        {/* Search, Notifications, and Profile */}
+        <div className="flex items-center space-x-4 md:space-x-6">
+          {/* Search Icon */}
+          <div className="cursor-pointer">
+            <CiSearch size={20} className="md:size-26" />
+          </div>
+
+          {/* Notifications with Badge */}
+          <div className="relative cursor-pointer">
+            <IoIosNotifications size={20} className="md:size-26" />
+            <span className="absolute top-0 right-1 h-2 w-2 md:h-3 md:w-3 rounded-full ring-2 ring-gray-900 bg-orange-500"></span>
+          </div>
+
+          {/* Profile Section */}
+          <div className="flex items-center space-x-2">
+            {currentUser ? (
+              <div className="flex items-center space-x-2">
+                {/* Show name only on medium screens and above */}
+                <span className="hidden md:inline-block text-gray-400">{currentUser.name}</span>
+                <img
+                  src={currentUser.profilePic}
+                  alt="Profile"
+                  className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-gray-600"
+                />
+              </div>
+            ) : (
+              <div className="text-gray-400 text-sm hidden md:block">Sign in to view profile</div>
+            )}
+          </div>
+        </div>
+      </div>
         
       </>
   )

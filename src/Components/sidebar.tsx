@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
     };
 
     return (
-        <div className="fixed bottom-0 left-0 w-full md:w-64 md:h-full bg-gray-700">
+        <div className="fixed bottom-0 left-0 w-full md:w-24 md:h-full bg-gray-700">
             <nav className="text-white h-full flex sm:flex-row md:flex-col justify-between items-center md:items-start md:w-20 p-2 md:py-10">
 
                 <a href="#" onClick={handletodashboard} className="flex flex-col items-center p-2 text-gray-300 hover:text-white rounded-lg">
