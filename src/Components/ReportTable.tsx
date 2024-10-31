@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
+import Pagination from "./Pagination";
 
 // Define types for transaction and props
 interface Transaction {
@@ -17,6 +18,17 @@ interface ReportTableProps {
 }
 
 const ReportTable: React.FC<ReportTableProps> = ({ report }) => {
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 5;
+
+	// Calculate the current items to display
+	const indexOfLastItem = currentPage * itemsPerPage;
+	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+	const currentItems = report.slice(indexOfFirstItem, indexOfLastItem);
+
+	// Function to handle page change
+	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
 	return (
 		<div className="mt-5 mx-5 border rounded-lg overflow-x-auto">
 			<table className="w-full text-left border-collapse">
@@ -38,7 +50,7 @@ const ReportTable: React.FC<ReportTableProps> = ({ report }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{report.map((transaction) => (
+					{currentItems.map((transaction) => (
 						<tr key={transaction.id} className="hover:bg-gray-300">
 							<td className="py-3 px-4 border-b">{transaction.id}</td>
 							<td className="py-3 px-4 border-b">{transaction.date}</td>
@@ -57,6 +69,23 @@ const ReportTable: React.FC<ReportTableProps> = ({ report }) => {
 					))}
 				</tbody>
 			</table>
+
+			{report.length > 0 && (
+				<div className="flex justify-end mt-1 mr-1 p-1">
+					<Pagination
+						itemsPerPage={itemsPerPage}
+						totalItems={report.length}
+						paginate={paginate}
+						currentPage={currentPage}
+					/>
+				</div>
+			)}
+
+			{report.length === 0 && (
+				<div className=" flex justify-center text-3xl ">
+					No Transactions Found!
+				</div>
+			)}
 		</div>
 	);
 };

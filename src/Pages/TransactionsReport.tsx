@@ -29,7 +29,7 @@ const TransactionsReport: React.FC = () => {
 				expense: transaction.expense,
 				description: transaction.description,
 				category: transaction.category,
-				categoryName: transaction.categoryName, 
+				categoryName: transaction.categoryName,
 				amount: transaction.amount,
 			}))
 			.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());

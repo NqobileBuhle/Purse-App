@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 
-//Anotating all the datafrom the json file
+//Annotating all the data from the JSON file
 interface Transaction {
 	id: string;
 	date: string;
@@ -12,7 +12,7 @@ interface Transaction {
 	amount: number;
 }
 
-//Anotating the props of the component
+//Annotating the props of the component
 interface ReportFilteringProps {
 	transactions: Transaction[];
 	onFilterChange: (filtered: Transaction[]) => void;
@@ -27,18 +27,27 @@ const ReportFiltering: React.FC<ReportFilteringProps> = ({
 
 	// Filter transactions whenever the search query or category changes
 	useEffect(() => {
-		const filtered = transactions.filter((transaction) => {
-			const matchesCategory =
-				category === "All" || transaction.category === category;
-			const matchesSearch =
-				searchQuery === "" ||
-				transaction.expense.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				transaction.description
-					.toLowerCase()
-					.includes(searchQuery.toLowerCase());
+		let filtered = transactions;
 
-			return matchesCategory && matchesSearch;
-		});
+		// Filter by category
+		if (category !== "All") {
+			filtered = filtered.filter(
+				(transaction) => transaction.category === category
+			);
+		}
+
+		// Filter by search query
+		if (searchQuery !== "") {
+			filtered = filtered.filter(
+				(transaction) =>
+					transaction.expense
+						.toLowerCase()
+						.includes(searchQuery.toLowerCase()) ||
+					transaction.description
+						.toLowerCase()
+						.includes(searchQuery.toLowerCase())
+			);
+		}
 
 		onFilterChange(filtered);
 	}, [searchQuery, category, transactions, onFilterChange]);
@@ -53,7 +62,6 @@ const ReportFiltering: React.FC<ReportFilteringProps> = ({
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
 		setCategory(event.target.value);
-		setSearchQuery("");
 	};
 
 	return (
@@ -68,11 +76,11 @@ const ReportFiltering: React.FC<ReportFilteringProps> = ({
 							placeholder="Search Transaction"
 							value={searchQuery}
 							onChange={(event) => setSearchQuery(event.target.value)}
-							className="w-full peer border border-gray-500 rounded-full focus:outline-none focus:border-orange-500 text-black h-10 p-2 ps-5 pl-12"
+							className="w-full peer border border-gray-500 rounded-full focus:outline-none focus:border-orange-500 text-black h-10 p-2 pl-10 "
 						/>
 						<CiSearch
 							size={30}
-							className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500 peer-focus:text-orange-500 "
+							className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-500 peer-focus:text-orange-500 "
 						/>
 					</div>
 
