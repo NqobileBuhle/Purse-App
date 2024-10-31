@@ -30,7 +30,7 @@ const ReportTable: React.FC<ReportTableProps> = ({ report }) => {
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
 	return (
-		<div className="mt-5 mx-5 border rounded-lg overflow-x-auto">
+		<div className="mt-5 mx-5 border rounded-lg overflow-x-auto ml-32">
 			<table className="w-full text-left border-collapse">
 				<thead className="bg-gray-400">
 					<tr>

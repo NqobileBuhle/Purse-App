@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import reportData from "../../public/Report.json";
 import ReportFiltering from "../Components/ReportFiltering";
 import ReportTable from "../Components/ReportTable";
+import Sidebar from '../Components/sidebar';
 
 //Anotating the data from the json file
 interface Transaction {
@@ -45,6 +46,7 @@ const TransactionsReport: React.FC = () => {
 
 	return (
 		<>
+		<Sidebar/>
 			<ReportFiltering
 				transactions={transactions}
 				onFilterChange={handleFilterChange}

@@ -5,7 +5,7 @@ import { FcSimCardChip } from "react-icons/fc";
 
 function Card() {
     return (
-        <div className="bg-gray-800 w-[25rem] p-6 ">
+        <div className="bg-gray-800 w-[25rem] p-6 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
            <div>
                 <h1 className="text-xl text-white font-bold mb-4 ">My Cards</h1>
             </div>
