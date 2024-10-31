@@ -71,7 +71,7 @@ const TransactionDashboard: React.FC = () => {
   return (
     <div className=''>
       <Sidebar />
-      <div className="p-4 bg-gray-900 ml-16 min-h-full">
+      <div className="p-4 bg-gray-900 ml-14 min-h-full">
         <div className="bg-white p-6 rounded-3xl shadow-lg">
           <h2 className="text-x font-bold ml-4">:: Dashboard</h2>
           <div className="text-white p-6 rounded-3xl shadow-lg mt-4 bg-gray-900">
