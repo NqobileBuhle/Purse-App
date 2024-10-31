@@ -100,7 +100,7 @@ export const FilterDay: React.FC<FilterComponentProps> = ({ currentUser }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center bg-gray-900 p-4 rounded-lg shadow-lg text-white">
+      <div className="flex justify-between items-center p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg p-4 rounded-lg shadow-lg text-white">
         {/* Time Range Buttons */}
         <div className="flex space-x-2 md:space-x-2">
           {(['Day', 'Week', 'Month', 'Year']).map((range) => (
@@ -116,32 +116,22 @@ export const FilterDay: React.FC<FilterComponentProps> = ({ currentUser }) => {
         </div>
 
         {/* Search, Notifications, and Profile */}
-        <div className="flex items-center space-x-4 md:space-x-6">
-          {/* Search Icon */}
-          <div className="cursor-pointer">
-            <CiSearch size={20} className="md:size-26" />
-          </div>
-
-          {/* Notifications with Badge */}
-          <div className="relative cursor-pointer">
-            <IoIosNotifications size={20} className="md:size-26" />
-            <span className="absolute top-0 right-1 h-2 w-2 md:h-3 md:w-3 rounded-full ring-2 ring-gray-900 bg-orange-500"></span>
-          </div>
+        <div className="flex items-center space-x-4 md:space-x-6">  
 
           {/* Profile Section */}
           <div className="flex items-center space-x-2">
             {currentUser ? (
               <div className="flex items-center space-x-2">
                 {/* Show name only on medium screens and above */}
-                <span className="hidden md:inline-block text-gray-400">{currentUser.name}</span>
+                <span className="hidden md:inline-block p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">{currentUser.name}</span>
                 <img
                   src={currentUser.profilePic}
                   alt="Profile"
-                  className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-gray-600"
+                  className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg"
                 />
               </div>
             ) : (
-              <div className="text-gray-400 text-sm hidden md:block">Sign in to view profile</div>
+                <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg text-sm hidden md:block"></div>
             )}
           </div>
         </div>

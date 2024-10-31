@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -6,23 +6,58 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { IoMdHome, IoMdSettings } from "react-icons/io";
+import { GiPieChart } from "react-icons/gi";
+import { FaRegKeyboard } from "react-icons/fa";
+
+// Define icons for categories
+const categoryIcons = {
+    "Housing": <IoMdHome size={20} />,
+    "Transportation": <GiPieChart size={20} />,
+    "FoodDining": <FaRegKeyboard size={20} />,
+    "Entertainment": <IoMdSettings size={20} />,
+    "PersonalFamily": <IoMdSettings size={20} />,
+};
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
 function Balance() {
-    // Circular progress chart data
+    const [transactions, setTransactions] = useState([]);
+    const openingBalance = 4300; // Example opening balance
+
+    useEffect(() => {
+        fetch("/Report.json")
+            .then((response) => response.json())
+            .then((data) => {
+                setTransactions(data.transactions);
+            })
+            .catch((error) => console.error("Error loading JSON:", error));
+    }, []);
+
+    // Calculate totals
+    const calculateTotals = (transactions) => {
+        const totalSpent = transactions.reduce((total, transaction) => total + transaction.amount, 0);
+        const availableBalance = openingBalance - totalSpent;
+        return { totalSpent, availableBalance };
+    };
+
+    const { totalSpent, availableBalance } = calculateTotals(transactions);
+
+    // Calculate percentage of the balance used
+    const percentageUsed = ((totalSpent / openingBalance) * 100).toFixed(0);
+
+    // Data for the circular progress chart
     const data = {
         datasets: [
             {
-                data: [3, 0], // 68% spent, 32% remaining
+                data: [totalSpent, openingBalance - totalSpent],
                 backgroundColor: ['#8b5cf6', '#333'],
-                borderWidth: 40,
+                borderWidth: 0,
             },
         ],
     };
 
-    // Circular chart options
+    // Options for the circular chart
     const options = {
         cutout: '80%', // Inner radius for the donut effect
         plugins: {
@@ -30,47 +65,44 @@ function Balance() {
             legend: { display: false },
         },
     };
+
     return (
-        
-        <div className="bg-gray-800 rounded-lg p-12 shadow-lg text-white flex flex-col items-center">
+        <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg rounded-lg pt-32 shadow-lg text-white flex h-100 w-[50rem] flex-col items-center">
             <div className="flex justify-center items-center mb-6">
                 <div className="relative">
-                    <Doughnut data={data} options={options} width={100} height={100} />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <p className="text-xl font-semibold">68%</p>
-                        <p className="text-xs text-gray-400">865/1284</p>
-                        <p className="text-xs text-gray-500">Spent balance</p>
+                    {/* Increase the size of the Doughnut chart */}
+                    <Doughnut data={data} options={{ ...options, cutout: '90%' }} className='z-10' width={100} height={100} />
+                    <div className="absolute inset-0 z-1 flex flex-col items-center justify-center">
+                        <p className="text-2xl font-semibold p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">{percentageUsed}%</p>
+                        <p className="text-xs text-green-500">balance</p>
                     </div>
                 </div>
             </div>
-            <p className="text-4xl font-semibold mb-4">$1248.40</p>
-            <h6 className="text-lg  mb-2">Available Balance</h6>
-          
-            
-            <div className="h-4 bg-gray-600 rounded-full overflow-hidden mb-4">
-                <div className="h-full w-2/3 bg-purple-500"></div>
-                <div className="h-full w-1/2 bg-yellow"></div>
+            <p className="text-4xl p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-semibold mb-4">R{availableBalance.toFixed(2)}</p>
+            <h6 className="text-lg mb-2 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">Available Balance</h6>
+
+            <div className="h-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg rounded-full overflow-hidden mb-4">
+                <div className="h-full" style={{ width: `${percentageUsed}%`, backgroundColor: "#7F00FF" }}></div>
             </div>
+
             <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                    <span>Grocery</span>
-                    <span className="text-gray-400">324.30$</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                    <span>Shopping</span>
-                    <span className="text-gray-400">298.10$</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                    <span>Education</span>
-                    <span className="text-gray-400">118.00$</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                    <span>Transport</span>
-                    <span className="text-gray-400">98.00$</span>
-                </div>
+                {Object.keys(categoryIcons).map((category) => {
+                    const totalCategoryAmount = transactions
+                        .filter(t => t.categoryName === category)
+                        .reduce((sum, t) => sum + t.amount, 0);
+
+                    return (
+                        <div key={category} className="flex justify-between items-center text-sm">
+                            <span className="flex items-center p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
+                                {categoryIcons[category]}
+                                <span className="ml-2 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">{category}</span>
+                            </span>
+                            <span className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">R{totalCategoryAmount.toFixed(2)}</span>
+                        </div>
+                    );
+                })}
             </div>
         </div>
-    
     );
 }
 

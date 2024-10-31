@@ -55,9 +55,9 @@ const PaymentsGraph = () => {
     };
 
     return (
-        <div className='bg-slate-800 rounded-2xl'>
+        <div className='bg-slate-800 rounded-2xl h-[30rem] w-[30rem]'>
             <h2 className='text-white text-2xl text-center font-semibold pb-3'>Payments</h2>
-            <Bar data={chartData} options={options} />;
+            <Bar data={chartData} options={options}  />
         </div>
 
     )
