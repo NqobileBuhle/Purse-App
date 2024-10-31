@@ -17,7 +17,7 @@ function Dashboard() {
    
     return ( 
     
-        <div className="bg-gray-100 flex items-center justify-center min-h-screen">
+        <div className="bg-gray-100 flex items-center justify-center">
             <Sidebar/>
   <div className="container mx-auto p-4">
                 <FilterDay className="mb-[20rem]" />

@@ -14,6 +14,11 @@ const SignIn: React.FC = () => {
     // Navigate to the dashboard after login (no authentication required)
     navigate("/dashboard");
   };
+  const handletoReg = () => {
+    // Navigate to the dashboard after login (no authentication required)
+    navigate("/signup");
+  };
+
 
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,13 +79,12 @@ const SignIn: React.FC = () => {
         
         {/* Extra Options */}
         <div className="mt-4 text-center">
-          <p className="text-gray-400">Don't have an account? <a href="#" className="text-orange-500 hover:underline">Sign Up</a></p>
+          <p className="text-gray-400">Don't have an account? <a href="#" className="text-orange-500 hover:underline"><button onClick={handletoReg}> Sign Up</button></a></p>
         </div>
   
       </div>
     </div>
   );
 };
-
 export default SignIn;
 
