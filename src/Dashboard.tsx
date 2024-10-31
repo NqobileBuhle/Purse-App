@@ -34,18 +34,47 @@ function Dashboard() {
     
       <div className="col-span-1 bg-blue-200 h-80 rounded-md">
                         <Balance />
-      </div>
-                    <div className="col-span-3 bg-blue-200  gap-8 ml-[10rem] flex h-50 rounded-lg">
+                    </div>
+
+                    {/* Component 4 below Components 1 and 2 */}
+                    <div className="bg-gray-700 p-4 rounded text-white flex items-center justify-center">
                         <ActivitiesGraph />
+                    </div>
+
+                    {/* Component 5 below Component 4 */}
+                    <div className="bg-gray-700 p-4 rounded text-white flex items-center justify-center">
                         <PaymentsGraph />
                     </div>
+                </div>
+            </div>
+        </div>
+
+
+
+//         <div className="bg-gray-100 flex items-center justify-center">
+//             <Sidebar/>
+//   <div className="container mx-auto p-4">
+//                 <FilterDay className="mb-[20rem]" />
+//     <div className="grid grid-cols-4 gap-2">
+//         <div className="col-span-3 bg-blue-200  ml-[10rem] flex h-50 rounded-lg">
+//                         <Card />
+//                         <Transactions/>
+//       </div>
+    
+//       <div className="col-span-1 bg-blue-200 h-80 rounded-md">
+//                         <Balance />
+//       </div>
+//                     <div className="col-span-3 bg-blue-200  gap-8 ml-[10rem] flex h-50 rounded-lg">
+//                         <ActivitiesGraph />
+//                         <PaymentsGraph />
+//                     </div>
 
                 
         
       
-    </div>
-  </div>
-</div>
+//     </div>
+//   </div>
+// </div>
 
 
 
