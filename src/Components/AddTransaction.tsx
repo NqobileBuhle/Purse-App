@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import Sidebar from './sidebar';
 import ReportTable from './ReportTable';
+import data from '../../public/Report.json';
 
 interface Transaction {
   id: string;
   description: string;
+  expense: string;
   category: string;
   amount: number;
   date: Date;
@@ -17,7 +19,8 @@ const TransactionDashboard: React.FC = () => {
   const [newDescription, setNewDescription] = useState<string>("");
   const [newCategory, setNewCategory] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [viewAll, setViewAll] = useState<boolean>(false); // New state for View All
+  const [viewAll, setViewAll] = useState<boolean>(false);
+
   const categories = [
     "Housing",
     "Transportation",
@@ -29,11 +32,25 @@ const TransactionDashboard: React.FC = () => {
     "Miscellaneous",
   ];
 
+  // Load transactions from JSON file on component mount
+  useEffect(() => {
+    const initialTransactions = data.transactions.map((transaction) => ({
+      id: transaction.transactionId,
+      description: transaction.description,
+      expense: transaction.expense,
+      category: transaction.category,
+      amount: transaction.amount,
+      date: new Date(transaction.date),
+    }));
+    setTransactions(initialTransactions);
+  }, []);
+
   const handleAddTransaction = () => {
     if (newDescription && newAmount !== 0 && newCategory) {
       const newTransaction: Transaction = {
         id: Date.now().toString(),
         description: newDescription,
+        expense: "Expense", // Adjust this as needed
         category: newCategory,
         amount: newAmount,
         date: new Date(),
@@ -71,7 +88,7 @@ const TransactionDashboard: React.FC = () => {
   return (
     <div className=''>
       <Sidebar />
-      <div className="p-4  ml-14 min-h-full">
+      <div className="p-4 bg-gray-900 ml-32 mr-8 mx-auto min-h-full mt-4">
         <div className="bg-white p-6 rounded-3xl shadow-lg">
           <h2 className="text-2xl font-bold ml-4">:: Dashboard</h2>
           <div className="text-white p-6 rounded-3xl shadow-lg mt-4 bg-gray-900">
@@ -83,7 +100,7 @@ const TransactionDashboard: React.FC = () => {
             <h2 className="text-lg font-bold">All Expenses</h2>
             <button 
               className="text-gray-500 bg-gray-200 p-3 rounded-3xl shadow-md"
-              onClick={() => setViewAll(!viewAll)} // Toggle viewAll state
+              onClick={() => setViewAll(!viewAll)}
             >
               View All
             </button>
@@ -110,15 +127,7 @@ const TransactionDashboard: React.FC = () => {
               ))}
             </ul>
           ) : (
-            <ReportTable report={transactions.map(t => ({
-              id: t.id,
-              date: formatDate(t.date),
-              expense: t.description,
-              description: t.description,
-              category: t.category,
-              categoryName: t.category,
-              amount: t.amount,
-            }))} />
+            <ReportTable report={transactions} />
           )}
 
           {/* Add Expense Button */}
