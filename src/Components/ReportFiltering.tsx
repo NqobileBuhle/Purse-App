@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CiSearch } from "react-icons/ci";
 
-//Annotating all the data from the JSON file
 interface Transaction {
 	id: string;
 	date: string;
@@ -12,7 +11,6 @@ interface Transaction {
 	amount: number;
 }
 
-//Annotating the props of the component
 interface ReportFilteringProps {
 	transactions: Transaction[];
 	onFilterChange: (filtered: Transaction[]) => void;
@@ -24,19 +22,17 @@ const ReportFiltering: React.FC<ReportFilteringProps> = ({
 }) => {
 	const [searchQuery, setSearchQuery] = useState<string>("");
 	const [category, setCategory] = useState<string>("All");
+	const inputRef = useRef<HTMLInputElement>(null);
 
-	// Filter transactions whenever the search query or category changes
 	useEffect(() => {
 		let filtered = transactions;
 
-		// Filter by category
 		if (category !== "All") {
 			filtered = filtered.filter(
 				(transaction) => transaction.category === category
 			);
 		}
 
-		// Filter by search query
 		if (searchQuery !== "") {
 			filtered = filtered.filter(
 				(transaction) =>
@@ -52,12 +48,14 @@ const ReportFiltering: React.FC<ReportFilteringProps> = ({
 		onFilterChange(filtered);
 	}, [searchQuery, category, transactions, onFilterChange]);
 
-	// Handle search query
 	const handleSearch = (event: React.FormEvent) => {
 		event.preventDefault();
+		if (searchQuery.trim() === "") {
+			inputRef.current?.focus();
+			return;
+		}
 	};
 
-	// Handle category changes
 	const handleCategoryChange = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
@@ -70,6 +68,7 @@ const ReportFiltering: React.FC<ReportFilteringProps> = ({
 				<form className="flex w-full" onSubmit={handleSearch}>
 					<div className="relative w-full">
 						<input
+							ref={inputRef}
 							type="text"
 							id="search"
 							name="search"
