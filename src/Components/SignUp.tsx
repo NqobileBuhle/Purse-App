@@ -12,9 +12,9 @@ const SignUp: React.FC = () => {
   const [agreeToTerms, setAgreeToTerms] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handletoLogin = () => {
     // Navigate to the dashboard after login (no authentication required)
-    navigate("/dashboard");
+    navigate("/login");
   };
   
 
@@ -130,7 +130,6 @@ const SignUp: React.FC = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            onClick={handleLogin} 
             className="w-full bg-orange-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-200 transition duration-300"
           >
             Sign Up
@@ -140,7 +139,7 @@ const SignUp: React.FC = () => {
         {/* Extra Options */}
         <div className="mt-4 text-center">
           <p className="text-gray-600">
-            Already have an account? <a href="" className="text-orange-500 hover:underline"><button>Sign In</button></a>
+            Already have an account? <a href="" onClick={handletoLogin} className="text-orange-500 hover:underline"><button>Sign In</button></a>
           </p>
         </div>
       </div>

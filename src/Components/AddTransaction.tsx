@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid';
+import Sidebar from './sidebar';
 
 interface Transaction {
   id: string;
@@ -66,6 +67,8 @@ const TransactionDashboard: React.FC = () => {
   };
 
   return (
+    <div className=''>
+    <Sidebar/>
     <div className="p-4 bg-gray-900">
     <div className=" bg-white p-6 rounded-3xl shadow-lg">
       {/* Dashboard */}
@@ -161,6 +164,7 @@ const TransactionDashboard: React.FC = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
     </div>
   );

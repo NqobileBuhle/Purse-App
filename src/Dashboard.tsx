@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // Components for each section
 import Card from './Components/Card';
 import Transactions from './Components/RecentTransactions';
@@ -14,10 +15,14 @@ import Sidebar from './Components/sidebar';
 
 
 function Dashboard() {
-   
+    const navigate = useNavigate();
+    const handletotransrepo = () => {
+        // Navigate to the dashboard after login (no authentication required)
+        navigate("/transreport");
+    };
     return ( 
     
-        <div className="bg-gray-100 flex items-center justify-center min-h-screen">
+        <div className="bg-gray-100 flex items-center justify-center">
             <Sidebar/>
   <div className="container mx-auto p-4">
                 <FilterDay  />

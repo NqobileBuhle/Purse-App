@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import SignIn from "./Components/SignIn"
 import SignUp from "./Components/SignUp" 
 import Dashboard from "./Dashboard";
+import UserSettings from "./UserSettings";
+import TransactionDashboard from "./Components/AddTransaction"
+import TransactionsReport from "./Pages/TransactionsReport"
 
 import { FilterDay } from './Components/FilterDay'
 
@@ -20,6 +23,9 @@ const App = () => {
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/Settings" element={<UserSettings />}/>
+        <Route path="/addTrans" element={<TransactionDashboard />} />
+        <Route path="/transreport" element={<TransactionsReport />} />
         <Route path="/" element={<SignUp />} />
       </Routes>
     </Router>
