@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { IoMdHome } from 'react-icons/io';
 import { GiPieChart } from 'react-icons/gi';
@@ -7,54 +6,56 @@ import { FaBookmark } from "react-icons/fa6";
 import { FaRegKeyboard, FaLocationDot } from 'react-icons/fa6';
 import { IoMdSettings } from "react-icons/io";
 
-
-
 const Sidebar: React.FC = () => {
     const navigate = useNavigate();
 
     const handletoSettings = () => {
-        // Navigate to the dashboard after login (no authentication required)
         navigate("/Settings");
     };
     const handletodashboard = () => {
-        // Navigate to the dashboard after login (no authentication required)
         navigate("/Dashboard");
     };
     const handletoaddtrans = () => {
-        // Navigate to the dashboard after login (no authentication required)
         navigate("/addTrans");
     };
     const handletotransrepo = () => {
-        // Navigate to the dashboard after login (no authentication required)
         navigate("/transreport");
     };
 
-
-
     return (
-        <div className="hidden md:block sidebar fixed bottom-0 left-0 w-full sm:w-64 h-full sm:h-auto">
-            <nav className="bg-gray-700 text-white h-full flex flex-col justify-between w-20 h-55 rounded">
+        <div className="fixed bottom-0 left-0 w-full md:w-64 md:h-full bg-gray-700">
+            <nav className="text-white h-full flex sm:flex-row md:flex-col justify-between items-center md:items-start md:w-20 p-2 md:py-10">
 
-                <div className="w-full py-10">
-                    <a href="" onClick={handletodashboard} className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
-                        <IoMdHome className="mr-4 mb-10" size={25} />
-                    </a>
-                    <a href="" onClick={handletoaddtrans} className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
-                        <GiPieChart className="mr-4 mb-10" size={25} />
-                    </a>
-                    <a href="" onClick={handletotransrepo} className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
-                        <FaRegKeyboard className="mr-4 mb-10" size={25} />
-                    </a>
-                    <a href="form.html" className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
-                        <FaBookmark className="mr-4 mb-10" size={25} />
-                    </a>
-                    <a href="location.html" className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
-                        <FaLocationDot className="mr-4 mb-60" size={25} />
-                    </a>
-                    <a href="" onClick={handletoSettings} className="flex items-center px-4 py-2 text-gray-300 hover:text-white rounded-lg mb-2">
-                        <IoMdSettings className="mr-4" size={25} />
-                    </a>
-                </div>
+                <a href="#" onClick={handletodashboard} className="flex flex-col items-center p-2 text-gray-300 hover:text-white rounded-lg">
+                    <IoMdHome className="mb-1" size={25} />
+                    <span className="text-xs hidden md:block">Home</span>
+                </a>
+
+                <a href="#" onClick={handletoaddtrans} className="flex flex-col items-center p-2 text-gray-300 hover:text-white rounded-lg">
+                    <GiPieChart className="mb-1" size={25} />
+                    <span className="text-xs hidden md:block">Add</span>
+                </a>
+
+                <a href="#" onClick={handletotransrepo} className="flex flex-col items-center p-2 text-gray-300 hover:text-white rounded-lg">
+                    <FaRegKeyboard className="mb-1" size={25} />
+                    <span className="text-xs hidden md:block">Report</span>
+                </a>
+
+                <a href="form.html" className="flex flex-col items-center p-2 text-gray-300 hover:text-white rounded-lg">
+                    <FaBookmark className="mb-1" size={25} />
+                    <span className="text-xs hidden md:block">Form</span>
+                </a>
+
+                <a href="location.html" className="flex flex-col items-center p-2 text-gray-300 hover:text-white rounded-lg">
+                    <FaLocationDot className="mb-1" size={25} />
+                    <span className="text-xs hidden md:block">Location</span>
+                </a>
+
+                <a href="#" onClick={handletoSettings} className="flex flex-col items-center p-2 text-gray-300 hover:text-white rounded-lg">
+                    <IoMdSettings className="mb-1" size={25} />
+                    <span className="text-xs hidden md:block">Settings</span>
+                </a>
+
             </nav>
         </div>
     );
