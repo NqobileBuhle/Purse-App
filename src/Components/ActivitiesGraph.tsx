@@ -32,7 +32,7 @@ const ActivitiesGraph: React.FC = () => {
     fetch('/../public/Report.json')
       .then(response => response.json())
       .then((data: { transactions: Transaction[] }) => {
-        const paymentsByDay = data.transactions
+        const activitiesData = data.transactions
           .filter(transaction => transaction.Category !== "Payments") // Filter for Payments category
           .reduce((acc, transaction) => {
             const day = getDayOfWeek(transaction.date); // Get the day of the week
@@ -40,7 +40,7 @@ const ActivitiesGraph: React.FC = () => {
             return acc;
           }, { ...weeklyPayments });
 
-        setWeeklyPayments(paymentsByDay);
+        setWeeklyPayments(activitiesData);
       })
       .catch(error => console.error('Error fetching data:', error));
   }, []);
