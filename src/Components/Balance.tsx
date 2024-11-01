@@ -23,7 +23,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Balance() {
     const [transactions, setTransactions] = useState([]);
-    const openingBalance = 4300; // Example opening balance
+    const openingBalance = 15000; // Example opening balance
 
     useEffect(() => {
         fetch("/Report.json")

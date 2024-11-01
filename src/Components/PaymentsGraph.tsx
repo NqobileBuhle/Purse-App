@@ -7,9 +7,11 @@ interface Transaction {
   date: string;
   Expense: string;
   description: string;
-  Category: string;
+  category: string;
+  categoryName: string;
   amount: number;
 }
+<<<<<<< HEAD
 const PaymentsGraph = () => {
     const labels = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     const [paymentsData, setPaymentsData] = useState<Transaction[]>([]);
@@ -57,6 +59,8 @@ const PaymentsGraph = () => {
         </div>
 
     )
+=======
+>>>>>>> 4779c52c2ad8fc0566a497d408c6ea87ac2a8c26
 
 const getDayOfWeek = (dateString: string): string => {
   const date = new Date(dateString);
@@ -80,12 +84,16 @@ const PaymentsGraph: React.FC = () => {
       .then(response => response.json())
       .then((data: { transactions: Transaction[] }) => {
         const paymentsByDay = data.transactions
-          .filter(transaction => transaction.Category === "Payments") // Filter for Payments category
+          .filter(transaction => {
+            console.log("Transaction Category:", transaction.category); // Log each transaction's category
+            return transaction.category === "Payments";
+          }) // Filter for Payments category
           .reduce((acc, transaction) => {
             const day = getDayOfWeek(transaction.date); // Get the day of the week
             acc[day] = (acc[day] || 0) + transaction.amount; // Sum amounts for each day
             return acc;
           }, { ...weeklyPayments });
+          console.log("Filtered payments by day:", paymentsByDay); // Log the filtered payments by day
 
         setWeeklyPayments(paymentsByDay);
       })
@@ -106,12 +114,14 @@ const PaymentsGraph: React.FC = () => {
     ],
   };
 
-  return (
-    <div style={{ backgroundColor: '#333', padding: '1rem', borderRadius: '15px' }}>
-      <h3 className = 'color-#fff text-center text-white'>Payments</h3>
-      <Bar data={chartData} />
-    </div>
-  );
+    return (
+        <div className='bg-slate-800 rounded-2xl'>
+            <h2 className='text-white text-2xl text-center font-semibold pb-3'>Payments</h2>
+            <Bar data={chartData} />;
+        </div>
+
+    )
+
 };
 
 export default PaymentsGraph

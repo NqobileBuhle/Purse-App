@@ -21,6 +21,7 @@ function Dashboard() {
         navigate("/transreport");
     };
     return ( 
+<<<<<<< HEAD
         <div className="flex flex-col md:flex-row min-h-screen bg-gray-900">
             {/* Sidebar */}
             <Sidebar />
@@ -46,10 +47,25 @@ function Dashboard() {
 
                     {/* Component 3 on the right, spanning two rows on larger screens */}
                     <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg p-4 rounded text-white flex  md:row-span-2 md:col-span-1">
+=======
+    
+        <div className="bg-gray-100 flex items-center justify-center">
+            <Sidebar/>
+            <div className="container mx-auto p-4">
+            <FilterDay  />
+                <div className="grid grid-cols-4 gap-2">
+                <div className="col-span-3  ml-[10rem] flex h-50 rounded-lg">
+                        <Card />
+                        <Transactions/>
+                </div>
+    
+                <div className="col-span-1 bg-blue-200 h-80 rounded-md">
+>>>>>>> 4779c52c2ad8fc0566a497d408c6ea87ac2a8c26
                         <Balance />
                     </div>
 
                     {/* Component 4 below Components 1 and 2 */}
+<<<<<<< HEAD
                     <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg p-4 rounded text-white flex items-center justify-center">
                         <ActivitiesGraph />
                     </div>
@@ -57,6 +73,11 @@ function Dashboard() {
                     {/* Component 5 below Component 4 */}
                     <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg p-4 rounded text-white flex items-center justify-center">
                         
+=======
+                    <div className="col-span-3 gap-8 ml-[10rem] flex h-50 rounded-lg my-10">
+                        <ActivitiesGraph />
+                        <PaymentsGraph />
+>>>>>>> 4779c52c2ad8fc0566a497d408c6ea87ac2a8c26
                     </div>
             </div>
        
@@ -86,7 +107,7 @@ function Dashboard() {
       
    </div>
    </div>
-// </div>
+
 
 
 
