@@ -26,7 +26,7 @@ function Dashboard() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-grow p-4 md:ml-32 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
+            <div className="flex-grow p-2 md:ml-32 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
                 <FilterDay className="mb-[20rem]" />
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2">
 
