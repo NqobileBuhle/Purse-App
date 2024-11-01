@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import Sidebar from './sidebar';
 import ReportTable from './ReportTable';
@@ -19,7 +20,7 @@ const TransactionDashboard: React.FC = () => {
   const [newDescription, setNewDescription] = useState<string>("");
   const [newCategory, setNewCategory] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [viewAll, setViewAll] = useState<boolean>(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const categories = [
     "Housing",
@@ -84,6 +85,11 @@ const TransactionDashboard: React.FC = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  // Handle navigation to TransactionsReport page
+  const handleViewAll = () => {
+    navigate("/transreport"); // Navigate to TransactionsReport
+  };
+
   return (
     <div className='flex flex-col md:flex-row'>
       <Sidebar />
@@ -99,35 +105,31 @@ const TransactionDashboard: React.FC = () => {
             <h2 className="text-lg font-bold">All Expenses</h2>
             <button 
               className="text-gray-500 bg-gray-200 p-2 md:p-3 rounded-xl md:rounded-3xl shadow-md"
-              onClick={() => setViewAll(!viewAll)}
+              onClick={handleViewAll} // Add navigation handler here
             >
               View All
             </button>
           </div>
 
-          {!viewAll ? (
-            <ul className="space-y-2 md:space-y-4">
-              {["Today", "Yesterday", ...new Set(transactions.map(t => formatDate(t.date)).filter(d => d !== "Today" && d !== "Yesterday"))]
-                .map(dateLabel => (
-                  <div key={dateLabel}>
-                    <h3 className="text-gray-700 mt-4 md:mt-6">{dateLabel}</h3>
-                    {transactions
-                      .filter(transaction => formatDate(transaction.date) === dateLabel)
-                      .map(transaction => (
-                        <li key={transaction.id} className="bg-gray-200 p-3 md:p-4 rounded-xl md:rounded-3xl shadow-md flex justify-between items-center mb-2 md:mb-3">
-                          <div>
-                            <h4 className="font-bold">{transaction.description}</h4>
-                            <p className="text-gray-500">{transaction.category}</p>
-                          </div>
-                          <span className="text-lg font-bold">R {transaction.amount.toLocaleString()}</span>
-                        </li>
-                    ))}
-                  </div>
-              ))}
-            </ul>
-          ) : (
-            <ReportTable report={transactions} />
-          )}
+          <ul className="space-y-2 md:space-y-4">
+            {["Today", "Yesterday", ...new Set(transactions.map(t => formatDate(t.date)).filter(d => d !== "Today" && d !== "Yesterday"))]
+              .map(dateLabel => (
+                <div key={dateLabel}>
+                  <h3 className="text-gray-700 mt-4 md:mt-6">{dateLabel}</h3>
+                  {transactions
+                    .filter(transaction => formatDate(transaction.date) === dateLabel)
+                    .map(transaction => (
+                      <li key={transaction.id} className="bg-gray-200 p-3 md:p-4 rounded-xl md:rounded-3xl shadow-md flex justify-between items-center mb-2 md:mb-3">
+                        <div>
+                          <h4 className="font-bold">{transaction.description}</h4>
+                          <p className="text-gray-500">{transaction.category}</p>
+                        </div>
+                        <span className="text-lg font-bold">R {transaction.amount.toLocaleString()}</span>
+                      </li>
+                  ))}
+                </div>
+            ))}
+          </ul>
 
           {/* Add Expense Button */}
           <button onClick={toggleModal} className="fixed bottom-12 right-4 md:bottom-16 md:right-8 bg-black text-white p-3 md:p-4 rounded-full shadow-lg">
