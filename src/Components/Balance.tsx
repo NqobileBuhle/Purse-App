@@ -23,7 +23,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Balance() {
     const [transactions, setTransactions] = useState([]);
-    const openingBalance = 15000; // Example opening balance
+    const openingBalance = 13000; // Example opening balance
 
     useEffect(() => {
         fetch("/Report.json")
@@ -67,21 +67,21 @@ function Balance() {
     };
 
     return (
-        <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg rounded-lg pt-6 shadow-lg text-white flex flex-col items-center">
-            <div className="flex justify-center items-center mb-6">
+        <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg rounded-lg pt-6 shadow-lg text-white flex justify-between items-center flex-col items-center">
+            <div className="flex justify-center items-center">
                 <div className="relative">
                     {/* Increase the size of the Doughnut chart */}
-                    <Doughnut data={data} options={{ ...options, cutout: '90%' }} className='z-10' width={100} height={100} />
-                    <div className="absolute inset-0 z-1 flex flex-col items-center justify-center">
-                        <p className="text-2xl font-semibold p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">{percentageUsed}%</p>
+                    <Doughnut data={data} options={{ ...options, cutout: '90%' }}  width={100} height={100} />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <p className="text-2xl font-semibold bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">{percentageUsed}%</p>
                         <p className="text-xs text-green-500">balance</p>
                     </div>
                 </div>
             </div>
             <p className="text-4xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-semibold mb-4">R{availableBalance.toFixed(2)}</p>
-            <h6 className="text-lg  p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">Available Balance</h6>
+            <h6 className="text-lg  bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">Available Balance</h6>
 
-            <div className="h-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg rounded-full overflow-hidden mb-4">
+            <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg rounded-full overflow-hidden mb-4">
                 <div className="h-full" style={{ width: `${percentageUsed}%`, backgroundColor: "#7F00FF" }}></div>
             </div>
 
