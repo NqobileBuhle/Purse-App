@@ -60,12 +60,14 @@ const PaymentsGraph: React.FC = () => {
     ],
   };
 
-  return (
-    <div style={{ backgroundColor: '#333', padding: '1rem', borderRadius: '15px' }}>
-      <h3 className = 'color-#fff text-center text-white'>Payments</h3>
-      <Bar data={chartData} />
-    </div>
-  );
+    return (
+        <div className='bg-slate-800 rounded-2xl'>
+            <h2 className='text-white text-2xl text-center font-semibold pb-3'>Payments</h2>
+            <Bar data={chartData} options={options} />;
+        </div>
+
+    )
+
 };
 
 export default PaymentsGraph;
