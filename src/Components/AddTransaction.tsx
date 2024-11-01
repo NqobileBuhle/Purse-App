@@ -20,7 +20,7 @@ const TransactionDashboard: React.FC = () => {
   const [newDescription, setNewDescription] = useState<string>("");
   const [newCategory, setNewCategory] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const categories = [
     "Housing",
@@ -91,9 +91,9 @@ const TransactionDashboard: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-col md:flex-row'>
+    <div className='flex flex-col md:flex-row '>
       <Sidebar />
-      <div className="p-4 bg-gray-900 w-full md:ml-36 mx-auto min-h-screen mt-4">
+      <div className=" w-full md:ml-36 mr-2  mx-auto min-h-screen mt-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-900 rounded-lg">
         <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-3xl shadow-lg">
           <h2 className="text-xl md:text-3xl font-bold">:: Dashboard</h2>
           <div className="text-white p-4 md:p-6 rounded-xl md:rounded-3xl shadow-lg mt-4 bg-gray-900">
@@ -105,7 +105,7 @@ const TransactionDashboard: React.FC = () => {
             <h2 className="text-lg font-bold">All Expenses</h2>
             <button 
               className="text-gray-500 bg-gray-200 p-2 md:p-3 rounded-xl md:rounded-3xl shadow-md"
-              onClick={handleViewAll} // Add navigation handler here
+              onClick={handleViewAll}
             >
               View All
             </button>
