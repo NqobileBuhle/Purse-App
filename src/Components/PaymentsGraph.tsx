@@ -1,67 +1,73 @@
-import { Bar } from 'react-chartjs-2';
-import 'chart.js/auto'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import React, { useEffect, useState } from 'react';
-
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+import { Bar } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 interface Transaction {
     transactionId: string;
     date: string;
     Expense: string;
     description: string;
-    Category: string;
+    category: string;
+    categoryName: string;
     amount: number;
 }
-const PaymentsGraph = () => {
-    const labels = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
-    const [paymentsData, setPaymentsData] = useState<Transaction[]>([]);
+
+const getDayOfWeek = (dateString: string): string => {
+    const date = new Date(dateString);
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return daysOfWeek[date.getUTCDay()];
+};
+
+const PaymentsGraph: React.FC = () => {
+    const [weeklyPayments, setWeeklyPayments] = useState<{ [key: string]: number }>({
+        Sunday: 0,
+        Monday: 0,
+        Tuesday: 0,
+        Wednesday: 0,
+        Thursday: 0,
+        Friday: 0,
+        Saturday: 0,
+    });
 
     useEffect(() => {
-
         fetch('/../public/Report.json')
             .then(response => response.json())
             .then((data: { transactions: Transaction[] }) => {
-                const payments = data.transactions.filter(transaction => transaction.Category === "Payments");
-                setPaymentsData(payments);
+                const paymentsByDay = data.transactions
+                    .filter(transaction => transaction.category === "Payments") // Filter for Payments category
+                    .reduce((acc, transaction) => {
+                        const day = getDayOfWeek(transaction.date); // Get the day of the week
+                        acc[day] = (acc[day] || 0) + transaction.amount; // Sum amounts for each day
+                        return acc;
+                    }, { ...weeklyPayments });
+
+                setWeeklyPayments(paymentsByDay);
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
 
-    console.log(paymentsData);
-
     const chartData = {
-        labels: labels,
+        labels: Object.keys(weeklyPayments), // Days of the week
         datasets: [
             {
-                label: 'Money recieved',
-                data: paymentsData.map(item => item.amount),
+                label: 'Total payments recieved',
+                data: Object.values(weeklyPayments), // Total payments for each day
                 backgroundColor: '#f97316',
                 borderColor: '#f97316',
                 borderWidth: 1,
+
             },
         ],
     };
 
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top' as const,
-            },
-
-        },
-    };
-
     return (
-        <div className='bg-slate-800 rounded-2xl h-[30rem] w-[30rem]'>
+        <div className='bg-slate-800 rounded-2xl'>
             <h2 className='text-white text-2xl text-center font-semibold pb-3'>Payments</h2>
-            <Bar data={chartData} options={options}  />
+            <Bar data={chartData} />;
         </div>
 
     )
 
 };
 
-export default PaymentsGraph
+export default PaymentsGraph;

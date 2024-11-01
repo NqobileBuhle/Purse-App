@@ -1,73 +1,73 @@
-import { Line } from 'react-chartjs-2';
-import 'chart.js/auto'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import React, { useEffect, useState } from 'react';
-
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+import { Line } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 interface Transaction {
     transactionId: string;
     date: string;
     Expense: string;
     description: string;
-    Category: string;
+    category: string;
     amount: number;
 }
-const ActivitiesGraph = () => {
-    const labels = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
-    const [activitiesData, setAvtivitiesData] = useState<Transaction[]>([]);
+
+const getDayOfWeek = (dateString: string): string => {
+    const date = new Date(dateString);
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return daysOfWeek[date.getUTCDay()];
+};
+
+const ActivitiesGraph: React.FC = () => {
+    const [weeklyPayments, setWeeklyPayments] = useState<{ [key: string]: number }>({
+        Sunday: 0,
+        Monday: 0,
+        Tuesday: 0,
+        Wednesday: 0,
+        Thursday: 0,
+        Friday: 0,
+        Saturday: 0,
+    });
 
     useEffect(() => {
-
         fetch('/../public/Report.json')
             .then(response => response.json())
             .then((data: { transactions: Transaction[] }) => {
-                const activities = data.transactions.filter(transaction => transaction.Category !== "Payments");
-                setAvtivitiesData(activities);
+                const activitiesData = data.transactions
+                    .filter(transaction => transaction.category !== "Payments") // Filter for Payments category
+                    .reduce((acc, transaction) => {
+                        const day = getDayOfWeek(transaction.date); // Get the day of the week
+                        acc[day] = (acc[day] || 0) + transaction.amount; // Sum amounts for each day
+                        return acc;
+                    }, { ...weeklyPayments });
+
+                setWeeklyPayments(activitiesData);
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
 
-    console.log(activitiesData);
-
     const lineChartData = {
-        labels: labels,
+        labels: Object.keys(weeklyPayments), // Days of the week
         datasets: [
             {
-                label: 'Money spent on activities',
-                data: activitiesData.map(item => item.amount),
-                backgroundColor: 'rgba(128, 90, 213, 0.2)',
-                borderColor: '#805AD5',
-                borderWidth: 2,
-                tension: 0.4, // smooth curve
-                pointBackgroundColor: '#805AD5',
-                pointBorderColor: '#805AD5',
-                pointHoverBackgroundColor: '#805AD5',
-                pointHoverBorderColor: '#805AD5',
+                label: 'Total spent on activities',
+                data: Object.values(weeklyPayments), // Total payments for each day
+                backgroundColor: '#9333ea',
+                borderColor: '#9333ea',
+                borderWidth: 1,
+                pointRadius: 1,
+                tension: 0.4,
+
+
             },
         ],
     };
 
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top' as const,
-            },
-
-        },
-    };
-
     return (
-        <div className='bg-slate-800 rounded-2xl'>
-            <h3 className='text-white text-2xl text-center font-semibold pb-3'>Activities</h3>
-            <Line data={lineChartData} options={options} className='bg-slate-800 rounded-2xl' />
+        <div style={{ backgroundColor: '#333', padding: '1rem', borderRadius: '15px' }}>
+            <h3 className='color-#fff text-center text-white'>Activities</h3>
+            <Line data={lineChartData} />
         </div>
-
-
-    )
-
+    );
 };
 
-export default ActivitiesGraph
+export default ActivitiesGraph;
