@@ -10,8 +10,6 @@ interface Transaction {
   Category: string;
   amount: number;
 }
-<<<<<<< HEAD
-=======
 const PaymentsGraph = () => {
     const labels = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     const [paymentsData, setPaymentsData] = useState<Transaction[]>([]);
@@ -59,7 +57,6 @@ const PaymentsGraph = () => {
         </div>
 
     )
->>>>>>> c2d86f2e4a5cf4370666cc856c057082c077aab9
 
 const getDayOfWeek = (dateString: string): string => {
   const date = new Date(dateString);
@@ -117,4 +114,4 @@ const PaymentsGraph: React.FC = () => {
   );
 };
 
-export default PaymentsGraph;
+export default PaymentsGraph
