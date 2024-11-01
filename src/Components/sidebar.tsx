@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { IoMdHome, IoMdSettings, IoMdLogOut } from "react-icons/io";
-import { GiPieChart } from "react-icons/gi";
+import { PlusIcon } from '@heroicons/react/24/solid';
 import { FaRegKeyboard } from "react-icons/fa";
 import { BsMoon, BsSun } from "react-icons/bs";
 
@@ -43,7 +43,7 @@ const Sidebar = () => {
                     <span className="text-xs hidden md:block">Home</span>
                 </a>
                 <a href="#" onClick={handletoaddtrans} className="flex flex-col items-center p-2 text-gray-300 hover:text-white">
-                    <GiPieChart className="mb-1" size={25} />
+                    <PlusIcon className="mb-1" size={25} />
                     <span className="text-xs hidden md:block">Add</span>
                 </a>
                 <a href="#" onClick={handletotransrepo} className="flex flex-col items-center p-2 text-gray-300 hover:text-white">

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 // Components for each section
-import Card from './components/Card';
+import Card from './Components/Card';
 import Transactions from './Components/RecentTransactions';
 import Activity from './components/Activity';
 import Payments from './components/Payments';
@@ -50,21 +50,16 @@ function Dashboard() {
                     </div>
 
                     {/* Component 4 below Components 1 and 2 */}
-                    <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg p-4 rounded text-white flex items-center justify-center">
+                    <div className="col-span-3 gap-8 ml-[10rem] flex h-50 rounded-lg my-10">
                         <ActivitiesGraph />
-                    </div>
-
-                    {/* Component 5 below Component 4 */}
-                    <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg p-4 rounded text-white flex items-center justify-center">
                         <PaymentsGraph />
                     </div>
-                </div>
             </div>
-        </div>
+       
 
 
 
-//         <div className="bg-gray-100 flex items-center justify-center">
+{/* //         <div className="bg-gray-100 flex items-center justify-center">
 //             <Sidebar/>
 //   <div className="container mx-auto p-4">
 //                 <FilterDay className="mb-[20rem]" />
@@ -80,14 +75,14 @@ function Dashboard() {
 //                     <div className="col-span-3 bg-blue-200  gap-8 ml-[10rem] flex h-50 rounded-lg">
 //                         <ActivitiesGraph />
 //                         <PaymentsGraph />
-//                     </div>
+//                     </div> */}
 
                 
         
       
-//     </div>
-//   </div>
-// </div>
+   </div>
+   </div>
+
 
 
 
