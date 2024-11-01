@@ -93,7 +93,7 @@ const TransactionDashboard: React.FC = () => {
   return (
     <div className='flex flex-col md:flex-row '>
       <Sidebar />
-      <div className=" w-full md:ml-36 mr-2  mx-auto min-h-screen mt-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-900 rounded-lg">
+      <div className=" w-full md:ml-36 mr-2  mx-auto min-h-screen mt-1 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-900 rounded-lg">
         <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-3xl shadow-lg">
           <h2 className="text-xl md:text-3xl font-bold">:: Dashboard</h2>
           <div className="text-white p-4 md:p-6 rounded-xl md:rounded-3xl shadow-lg mt-4 bg-gray-900">
