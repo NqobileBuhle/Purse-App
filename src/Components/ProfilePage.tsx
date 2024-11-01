@@ -51,7 +51,7 @@ const ProfilePicture: React.FC = () => (
     <div className="flex flex-col items-end">
         <div className="flex items-center">
             <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-200 mx-5">
-                <img src="https://via.placeholder.com/800" alt="" className="w-full h-full object-cover" />
+                <img src="https://via.placeholder.com/800" alt="Profile" className="w-full h-full object-cover" />
             </div>
             <button className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-full text-sm">
                 Upload new photo
@@ -65,13 +65,10 @@ const PersonalInfo: React.FC<{ userInfo: UserInfo; onEdit: () => void }> = ({ us
     <div className="mt-6 p-4 bg-white shadow-md rounded-lg">
         <h3 className="text-lg font-semibold flex justify-between items-center">
             Personal Info
-            <button onClick={onEdit} className="text-orange-500 text-sm">Edit</button> {/* Edit button here */}
+            <button onClick={onEdit} className="text-orange-500 text-sm">Edit</button>
         </h3>
 
-        <div className="mt-4 space-y-4 p-4 bg-white ">
-
         <div className="mt-4 space-y-4 text-xl font-bold mb-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
-
             <InfoRow label="Full Name" value={userInfo.name} />
             <InfoRow label="Email" value={userInfo.email} />
             <InfoRow label="Phone" value={userInfo.phone} />

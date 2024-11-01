@@ -11,56 +11,6 @@ interface Transaction {
   categoryName: string;
   amount: number;
 }
-<<<<<<< HEAD
-const PaymentsGraph = () => {
-    const labels = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
-    const [paymentsData, setPaymentsData] = useState<Transaction[]>([]);
-
-    useEffect(() => {
-
-        fetch('/../public/Report.json')
-            .then(response => response.json())
-            .then((data: { transactions: Transaction[] }) => {
-                const payments = data.transactions.filter(transaction => transaction.Category === "Payments");
-                setPaymentsData(payments);
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
-
-    console.log(paymentsData);
-
-    const chartData = {
-        labels: labels,
-        datasets: [
-            {
-                label: 'Money recieved',
-                data: paymentsData.map(item => item.amount),
-                backgroundColor: '#f97316',
-                borderColor: '#f97316',
-                borderWidth: 1,
-            },
-        ],
-    };
-
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top' as const,
-            },
-
-        },
-    };
-
-    return (
-        <div className='bg-slate-800 rounded-2xl h-[30rem] w-[30rem]'>
-            <h2 className='text-white text-2xl text-center font-semibold pb-3'>Payments</h2>
-            <Bar data={chartData} options={options}  />
-        </div>
-
-    )
-=======
->>>>>>> 4779c52c2ad8fc0566a497d408c6ea87ac2a8c26
 
 const getDayOfWeek = (dateString: string): string => {
   const date = new Date(dateString);

@@ -100,11 +100,7 @@ export const FilterDay: React.FC<FilterComponentProps> = ({ currentUser }) => {
 
   return (
     <>
-<<<<<<< HEAD
       <div className="flex justify-between items-center p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg p-4 rounded-lg shadow-lg text-white">
-=======
-      <div className="flex justify-center items-center p-4 rounded-lg  text-white">
->>>>>>> 4779c52c2ad8fc0566a497d408c6ea87ac2a8c26
         {/* Time Range Buttons */}
         <div className="flex space-x-2 md:space-x-2">
           {(['Day', 'Week', 'Month', 'Year']).map((range) => (
