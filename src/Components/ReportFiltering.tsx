@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CiSearch } from "react-icons/ci";
 
-//Anotating all the datafrom the json file
 interface Transaction {
 	id: string;
 	date: string;
@@ -12,7 +11,6 @@ interface Transaction {
 	amount: number;
 }
 
-//Anotating the props of the component
 interface ReportFilteringProps {
 	transactions: Transaction[];
 	onFilterChange: (filtered: Transaction[]) => void;
@@ -24,36 +22,44 @@ const ReportFiltering: React.FC<ReportFilteringProps> = ({
 }) => {
 	const [searchQuery, setSearchQuery] = useState<string>("");
 	const [category, setCategory] = useState<string>("All");
+	const inputRef = useRef<HTMLInputElement>(null);
 
-	// Filter transactions whenever the search query or category changes
 	useEffect(() => {
-		const filtered = transactions.filter((transaction) => {
-			const matchesCategory =
-				category === "All" || transaction.category === category;
-			const matchesSearch =
-				searchQuery === "" ||
-				transaction.expense.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				transaction.description
-					.toLowerCase()
-					.includes(searchQuery.toLowerCase());
+		let filtered = transactions;
 
-			return matchesCategory && matchesSearch;
-		});
+		if (category !== "All") {
+			filtered = filtered.filter(
+				(transaction) => transaction.category === category
+			);
+		}
+
+		if (searchQuery !== "") {
+			filtered = filtered.filter(
+				(transaction) =>
+					transaction.expense
+						.toLowerCase()
+						.includes(searchQuery.toLowerCase()) ||
+					transaction.description
+						.toLowerCase()
+						.includes(searchQuery.toLowerCase())
+			);
+		}
 
 		onFilterChange(filtered);
 	}, [searchQuery, category, transactions, onFilterChange]);
 
-	// Handle search query
 	const handleSearch = (event: React.FormEvent) => {
 		event.preventDefault();
+		if (searchQuery.trim() === "") {
+			inputRef.current?.focus();
+			return;
+		}
 	};
 
-	// Handle category changes
 	const handleCategoryChange = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
 		setCategory(event.target.value);
-		setSearchQuery("");
 	};
 
 	return (
@@ -62,17 +68,18 @@ const ReportFiltering: React.FC<ReportFilteringProps> = ({
 				<form className="flex w-full" onSubmit={handleSearch}>
 					<div className="relative w-full">
 						<input
+							ref={inputRef}
 							type="text"
 							id="search"
 							name="search"
 							placeholder="Search Transaction"
 							value={searchQuery}
 							onChange={(event) => setSearchQuery(event.target.value)}
-							className="w-full peer border border-gray-500 rounded-full focus:outline-none focus:border-orange-500 text-black h-10 p-2 ps-5 pl-12"
+							className="w-full peer border border-gray-500 rounded-full focus:outline-none focus:border-orange-500 text-black h-10 p-2 pl-10 "
 						/>
 						<CiSearch
 							size={30}
-							className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500 peer-focus:text-orange-500 "
+							className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-500 peer-focus:text-orange-500 "
 						/>
 					</div>
 
