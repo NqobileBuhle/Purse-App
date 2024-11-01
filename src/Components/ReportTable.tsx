@@ -30,9 +30,9 @@ const ReportTable: React.FC<ReportTableProps> = ({ report }) => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className="mt-5 mx-2 md:mx-5 border rounded-lg overflow-x-auto ml-0 md:ml-32">
-      <div className="overflow-x-scroll md:overflow-auto">
-        <table className="w-full text-left border-collapse">
+    <div className="mt-5 mx-2 md:mx-5 border overflow-x-auto lg:overflow-visible ml-0 md:ml-32 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
+      <div className="overflow-x-auto">
+        <table className="min-w-full text-left border-collapse">
           <thead className="bg-gray-400">
             <tr>
               {[
@@ -46,7 +46,7 @@ const ReportTable: React.FC<ReportTableProps> = ({ report }) => {
               ].map((header, index) => (
                 <th
                   key={index}
-                  className="py-2 px-3 md:py-3 md:px-4 border-b text-sm md:text-base"
+                  className="py-2 px-3 md:py-3 md:px-4 border-b text-xs md:text-sm lg:text-base whitespace-nowrap"
                 >
                   {header}
                 </th>
@@ -56,25 +56,25 @@ const ReportTable: React.FC<ReportTableProps> = ({ report }) => {
           <tbody>
             {currentItems.map((transaction) => (
               <tr key={transaction.id} className="hover:bg-gray-300">
-                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-sm md:text-base">
+                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-xs md:text-sm lg:text-base">
                   {transaction.id}
                 </td>
-                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-sm md:text-base">
+                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-xs md:text-sm lg:text-base">
                   {transaction.date}
                 </td>
-                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-sm md:text-base">
+                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-xs md:text-sm lg:text-base">
                   {transaction.expense}
                 </td>
-                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-sm md:text-base">
+                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-xs md:text-sm lg:text-base">
                   {transaction.description}
                 </td>
-                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-sm md:text-base">
+                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-xs md:text-sm lg:text-base">
                   {transaction.categoryName}
                 </td>
-                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-sm md:text-base">
+                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-xs md:text-sm lg:text-base">
                   R{transaction.amount.toFixed(2)}
                 </td>
-                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-sm md:text-base">
+                <td className="py-2 px-3 md:py-3 md:px-4 border-b text-xs md:text-sm lg:text-base">
                   <button className="text-blue-500 hover:underline">
                     <FaRegEdit size={16} />
                   </button>
@@ -97,7 +97,7 @@ const ReportTable: React.FC<ReportTableProps> = ({ report }) => {
       )}
 
       {report.length === 0 && (
-        <div className="flex justify-center text-xl md:text-3xl p-5">
+        <div className="flex justify-center text-lg md:text-2xl lg:text-3xl p-5">
           No Transactions Found!
         </div>
       )}

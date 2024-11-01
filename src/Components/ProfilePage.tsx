@@ -140,7 +140,7 @@ const LocationSection: React.FC<{
     onEditLocation: () => void;
 }> = ({ location, newLocation, onLocationChange, onLocationSave, onCancel, isEditingLocation, onEditLocation }) => {
     return (
-        <div className="mt-6 p-4 mt-4 space-y-4 p-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg shadow-md rounded-lg">
+        <div className="mt-6 p-4  space-y-4 h-[600px] bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg shadow-md ">
             <h3 className="text-lg font-semibold flex justify-between items-center">
                 Location
                 {!isEditingLocation && (
@@ -153,7 +153,7 @@ const LocationSection: React.FC<{
                         type="text"
                         value={newLocation}
                         onChange={onLocationChange}
-                        className="border rounded px-2 mt-4 space-y-4 p-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg py-1 mb-2 focus:outline-none focus:ring focus:border-blue-300"
+                        className=" px-2 mt-4 space-y-4  bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg py-1 mb-2 focus:outline-none focus:ring focus:border-blue-300"
                     />
                     <button onClick={onLocationSave} className="bg-orange-500 text-white px-3 py-1 rounded mb-2">
                         Save changes
@@ -162,7 +162,7 @@ const LocationSection: React.FC<{
                 </div>
             ) : (
                 <div className="mt-2 flex justify-between items-center">
-                        <span className="mt-4 space-y-4 p-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">{location}</span>
+                        <span className="mt-4 space-y-4  bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">{location}</span>
                 </div>
             )}
         </div>
