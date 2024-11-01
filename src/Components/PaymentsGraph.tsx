@@ -7,7 +7,7 @@ interface Transaction {
   date: string;
   Expense: string;
   description: string;
-  Category: string;
+  category: string;
   categoryName: string;
   amount: number;
 }
@@ -34,12 +34,16 @@ const PaymentsGraph: React.FC = () => {
       .then(response => response.json())
       .then((data: { transactions: Transaction[] }) => {
         const paymentsByDay = data.transactions
-          .filter(transaction => transaction.Category === "Payments") // Filter for Payments category
+          .filter(transaction => {
+            console.log("Transaction Category:", transaction.category); // Log each transaction's category
+            return transaction.category === "Payments";
+          }) // Filter for Payments category
           .reduce((acc, transaction) => {
             const day = getDayOfWeek(transaction.date); // Get the day of the week
             acc[day] = (acc[day] || 0) + transaction.amount; // Sum amounts for each day
             return acc;
           }, { ...weeklyPayments });
+          console.log("Filtered payments by day:", paymentsByDay); // Log the filtered payments by day
 
         setWeeklyPayments(paymentsByDay);
       })

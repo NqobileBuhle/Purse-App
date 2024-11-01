@@ -7,7 +7,7 @@ interface Transaction {
   date: string;
   Expense: string;
   description: string;
-  Category: string;
+  category: string;
   amount: number;
 }
 
@@ -33,7 +33,7 @@ const ActivitiesGraph: React.FC = () => {
       .then(response => response.json())
       .then((data: { transactions: Transaction[] }) => {
         const activitiesData = data.transactions
-          .filter(transaction => transaction.Category !== "Payments") // Filter for Payments category
+          .filter(transaction => transaction.category !== "Payments") // Filter for Payments category
           .reduce((acc, transaction) => {
             const day = getDayOfWeek(transaction.date); // Get the day of the week
             acc[day] = (acc[day] || 0) + transaction.amount; // Sum amounts for each day
