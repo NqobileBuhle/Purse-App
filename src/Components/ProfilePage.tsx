@@ -55,22 +55,6 @@ const ProfilePage: React.FC = () => {
 
     return (
         <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
-<<<<<<< HEAD
-            <div className="max-w-xl mx-auto p-10 bg-white shadow-md rounded-lg">
-                <ProfilePicture />
-                <PersonalInfo
-                    userInfo={userInfo}
-                    onEdit={() => setIsEditingLocation(true)}
-                />
-                <LocationSection
-                    location={userInfo.location}
-                    isEditing={isEditingLocation}
-                    onCancel={() => setIsEditingLocation(false)}
-                    onSave={saveLocation}
-                    onLocationChange={handleLocationChange}
-                    newLocation={newLocation}
-                />
-=======
             <div className="max-w-xl mx-auto p-10 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg shadow-md rounded-lg">
                 {isEditing ? (
                     <EditProfileForm
@@ -102,24 +86,16 @@ const ProfilePage: React.FC = () => {
                         />
                     </>
                 )}
->>>>>>> 12fa427c718a5fb4e0b1297f163b2581a01951a7
             </div>
         </div>
     );
 };
 
 const ProfilePicture: React.FC = () => (
-<<<<<<< HEAD
-    <div className="flex flex-col items-end">
-        <div className="flex items-center">
-            <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-200 mx-5">
-                <img src="https://via.placeholder.com/800" alt="Profile" className="w-full h-full object-cover" />
-=======
     <div className="flex flex-col items-start p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
         <div className="flex items-center p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
             <div className="w-24 h-24 rounded-full overflow-hidden p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg mr-4">
                 <img src="https://via.placeholder.com/800" alt="" className="w-full h-full object-cover" />
->>>>>>> 12fa427c718a5fb4e0b1297f163b2581a01951a7
             </div>
             <button className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-full text-sm">
                 Upload new photo
@@ -138,12 +114,7 @@ const PersonalInfo: React.FC<{
             Personal Info
             <button onClick={onEdit} className="text-orange-500 text-sm">Edit</button>
         </h3>
-<<<<<<< HEAD
-
-        <div className="mt-4 space-y-4 text-xl font-bold mb-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
-=======
         <div className="mt-4 space-y-4 p-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg ">
->>>>>>> 12fa427c718a5fb4e0b1297f163b2581a01951a7
             <InfoRow label="Full Name" value={userInfo.name} />
             <InfoRow label="Surname" value={userInfo.surname} />
             <InfoRow label="Email" value={userInfo.email} />
@@ -162,31 +133,6 @@ const InfoRow: React.FC<{ label: string; value: string }> = ({ label, value }) =
 const LocationSection: React.FC<{
     location: string;
     newLocation: string;
-<<<<<<< HEAD
-}> = ({ location, isEditing, onCancel, onSave, onLocationChange, newLocation }) => (
-    <div className="mt-6 p-4 bg-white shadow-md rounded-lg">
-        <h3 className="text-lg font-semibold">Location</h3>
-        {isEditing ? (
-            <div className="mt-2 flex flex-col">
-                <input
-                    type="text"
-                    value={newLocation}
-                    onChange={onLocationChange}
-                    className="border rounded px-2 py-1 mb-2 focus:outline-none focus:ring focus:border-blue-300"
-                />
-                <button onClick={onSave} className="bg-orange-500 text-white px-3 py-1 rounded mb-2">
-                    Save changes
-                </button>
-                <button onClick={onCancel} className="text-gray-500">Cancel</button>
-            </div>
-        ) : (
-            <div className="mt-2 flex justify-between items-center">
-                <span className="text-gray-700">{location}</span>
-            </div>
-        )}
-    </div>
-);
-=======
     onLocationChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onLocationSave: () => void;
     onCancel: () => void;
@@ -222,6 +168,5 @@ const LocationSection: React.FC<{
         </div>
     );
 };
->>>>>>> 12fa427c718a5fb4e0b1297f163b2581a01951a7
 
 export default ProfilePage;
