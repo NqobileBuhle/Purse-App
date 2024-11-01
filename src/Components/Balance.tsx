@@ -67,7 +67,7 @@ function Balance() {
     };
 
     return (
-        <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg rounded-lg pt-32 shadow-lg text-white flex h-100 w-[50rem] flex-col items-center">
+        <div className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg rounded-lg pt-6 shadow-lg text-white flex flex-col items-center">
             <div className="flex justify-center items-center mb-6">
                 <div className="relative">
                     {/* Increase the size of the Doughnut chart */}
@@ -78,8 +78,8 @@ function Balance() {
                     </div>
                 </div>
             </div>
-            <p className="text-4xl p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-semibold mb-4">R{availableBalance.toFixed(2)}</p>
-            <h6 className="text-lg mb-2 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">Available Balance</h6>
+            <p className="text-4xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-semibold mb-4">R{availableBalance.toFixed(2)}</p>
+            <h6 className="text-lg  p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">Available Balance</h6>
 
             <div className="h-4 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg rounded-full overflow-hidden mb-4">
                 <div className="h-full" style={{ width: `${percentageUsed}%`, backgroundColor: "#7F00FF" }}></div>
@@ -93,9 +93,9 @@ function Balance() {
 
                     return (
                         <div key={category} className="flex justify-between items-center text-sm">
-                            <span className="flex items-center p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
+                            <span className="flex items-center bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">
                                 {categoryIcons[category]}
-                                <span className="ml-2 p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">{category}</span>
+                                <span className="ml-2  bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">{category}</span>
                             </span>
                             <span className="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg">R{totalCategoryAmount.toFixed(2)}</span>
                         </div>
