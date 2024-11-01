@@ -34,7 +34,7 @@ const PaymentsGraph: React.FC = () => {
       .then(response => response.json())
       .then((data: { transactions: Transaction[] }) => {
         const paymentsByDay = data.transactions
-          .filter(transaction => transaction.CategoryName === "Payments") // Filter for Payments category
+          .filter(transaction => transaction.Category === "Payments") // Filter for Payments category
           .reduce((acc, transaction) => {
             const day = getDayOfWeek(transaction.date); // Get the day of the week
             acc[day] = (acc[day] || 0) + transaction.amount; // Sum amounts for each day
@@ -63,7 +63,7 @@ const PaymentsGraph: React.FC = () => {
     return (
         <div className='bg-slate-800 rounded-2xl'>
             <h2 className='text-white text-2xl text-center font-semibold pb-3'>Payments</h2>
-            <Bar data={chartData} options={options} />;
+            <Bar data={chartData} />;
         </div>
 
     )

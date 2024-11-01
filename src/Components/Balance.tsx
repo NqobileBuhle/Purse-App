@@ -52,11 +52,7 @@ function Balance() {
             {
                 data: [totalSpent, openingBalance - totalSpent],
                 backgroundColor: ['#8b5cf6', '#333'],
-<<<<<<< HEAD
                 borderWidth: 10,
-=======
-                borderWidth: 0,
->>>>>>> c2d86f2e4a5cf4370666cc856c057082c077aab9
             },
         ],
     };
